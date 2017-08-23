@@ -23,8 +23,14 @@
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 
 #include<mutex>
+
+#include <android/log.h>
+#define LOG_TAG "ORB_SLAM_TRACK"
+
+#define LOG(...) __android_log_print(ANDROID_LOG_ERROR,LOG_TAG, __VA_ARGS__)
 
 namespace ORB_SLAM2
 {
@@ -143,6 +149,9 @@ void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
         s << "KFs: " << nKFs << ", MPs: " << nMPs << ", Matches: " << mnTracked;
         if(mnTrackedVO>0)
             s << ", + VO matches: " << mnTrackedVO;
+
+
+        LOG("KFs: %d, MPs: %d, Matches: %d, + VO matches: %d" , nKFs, nMPs, mnTracked, mnTrackedVO);
     }
     else if(nState==Tracking::LOST)
     {
@@ -156,23 +165,24 @@ void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
     int baseline=0;
     cv::Size textSize = cv::getTextSize(s.str(),cv::FONT_HERSHEY_PLAIN,1,1,&baseline);
 
-    imText = cv::Mat(im.rows+textSize.height+10,im.cols,im.type());
+    imText = cv::Mat(im.rows,im.cols,im.type());
     im.copyTo(imText.rowRange(0,im.rows).colRange(0,im.cols));
     imText.rowRange(im.rows,imText.rows) = cv::Mat::zeros(textSize.height+10,im.cols,im.type());
-    cv::putText(imText,s.str(),cv::Point(5,imText.rows-5),cv::FONT_HERSHEY_PLAIN,1,cv::Scalar(255,255,255),1,8);
+    cv::putText(imText,s.str(),cv::Point(5,imText.rows-25),cv::FONT_HERSHEY_PLAIN,1,cv::Scalar(255,0,0),1,8);
 
+LOG("channels:%d",imText.channels());
 }
 
 void FrameDrawer::Update(Tracking *pTracker)
 {
     unique_lock<mutex> lock(mMutex);
-    pTracker->mImGray.copyTo(mIm);
+    //pTracker->mImGray.copyTo(mIm);
+    pTracker->mImOrigin.copyTo(mIm);
     mvCurrentKeys=pTracker->mCurrentFrame.mvKeys;
     N = mvCurrentKeys.size();
     mvbVO = vector<bool>(N,false);
     mvbMap = vector<bool>(N,false);
     mbOnlyTracking = pTracker->mbOnlyTracking;
-
 
     if(pTracker->mLastProcessedState==Tracking::NOT_INITIALIZED)
     {

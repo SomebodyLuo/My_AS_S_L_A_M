@@ -241,6 +241,7 @@ cv::Mat Tracking::GrabImageRGBD(const cv::Mat &imRGB,const cv::Mat &imD, const d
 cv::Mat Tracking::GrabImageMonocular(const cv::Mat &im, const double &timestamp)
 {
     mImGray = im;
+    mImOrigin = im;
 
     if(mImGray.channels()==3)
     {
@@ -252,17 +253,25 @@ cv::Mat Tracking::GrabImageMonocular(const cv::Mat &im, const double &timestamp)
     else if(mImGray.channels()==4)
     {
         if(mbRGB)
+        {
+            cvtColor(mImOrigin,mImOrigin,CV_RGBA2RGB);
             cvtColor(mImGray,mImGray,CV_RGBA2GRAY);
+        }
         else
+        {
+            cvtColor(mImOrigin,mImOrigin,CV_BGRA2BGR);
             cvtColor(mImGray,mImGray,CV_BGRA2GRAY);
+        }
     }
 
+    //LOG("mState111");
     if(mState==NOT_INITIALIZED || mState==NO_IMAGES_YET)
         mCurrentFrame = Frame(mImGray,timestamp,mpIniORBextractor,mpORBVocabulary,mK,mDistCoef,mbf,mThDepth);
     else
         mCurrentFrame = Frame(mImGray,timestamp,mpORBextractorLeft,mpORBVocabulary,mK,mDistCoef,mbf,mThDepth);
-    Track();
 
+    //LOG("mState222");
+    Track();
     return mCurrentFrame.mTcw.clone();
 }
 
@@ -286,7 +295,6 @@ void Tracking::Track()
         else{
            MonocularInitialization();
         }
-
 
         mpFrameDrawer->Update(this);
 
@@ -396,7 +404,6 @@ void Tracking::Track()
                 }
             }
         }
-
         mCurrentFrame.mpReferenceKF = mpReferenceKF;
 
         // If we have an initial estimation of the camera pose and matching. Track the local map.
@@ -472,7 +479,6 @@ void Tracking::Track()
                     mCurrentFrame.mvpMapPoints[i]=static_cast<MapPoint*>(NULL);
             }
         }
-
         // Reset if the camera get lost soon after initialization
         if(mState==LOST)
         {
@@ -507,7 +513,6 @@ void Tracking::Track()
         mlFrameTimes.push_back(mlFrameTimes.back());
         mlbLost.push_back(mState==LOST);
     }
-
 }
 
 
@@ -739,7 +744,7 @@ void Tracking::CreateInitialMapMonocular()
     mpMapDrawer->SetCurrentCameraPose(pKFcur->GetPose());
 
     mpMap->mvpKeyFrameOrigins.push_back(pKFini);
-    LOG("mState=OK;");
+
     mState=OK;
 }
 
@@ -923,7 +928,7 @@ bool Tracking::TrackWithMotionModel()
             else if(mCurrentFrame.mvpMapPoints[i]->Observations()>0)
                 nmatchesMap++;
         }
-    }    
+    }
 
     if(mbOnlyTracking)
     {
@@ -938,7 +943,6 @@ bool Tracking::TrackLocalMap()
 {
     // We have an estimation of the camera pose and some map points tracked in the frame.
     // We retrieve the local map and try to find matches to points in the local map.
-
     UpdateLocalMap();
 
     SearchLocalPoints();
@@ -968,7 +972,6 @@ bool Tracking::TrackLocalMap()
 
         }
     }
-
     // Decide if the tracking was succesful
     // More restrictive if there was a relocalization recently
     if(mCurrentFrame.mnId<mnLastRelocFrameId+mMaxFrames && mnMatchesInliers<50)
@@ -1180,9 +1183,7 @@ void Tracking::SearchLocalPoints()
             }
         }
     }
-
-    int nToMatch=0;
-
+   int nToMatch=0;
     // Project points in frame and check its visibility
     for(vector<MapPoint*>::iterator vit=mvpLocalMapPoints.begin(), vend=mvpLocalMapPoints.end(); vit!=vend; vit++)
     {
@@ -1198,7 +1199,6 @@ void Tracking::SearchLocalPoints()
             nToMatch++;
         }
     }
-
     if(nToMatch>0)
     {
         ORBmatcher matcher(0.8);

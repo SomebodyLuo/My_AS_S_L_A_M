@@ -80,10 +80,9 @@ obj/local/armeabi-v7a/objs/mono/./ORB_SLAM2/src/Optimizer.o: \
  D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/mutex \
  jni/ORB_SLAM2/include/LoopClosing.h jni/ORB_SLAM2/include/LocalMapping.h \
  jni/ORB_SLAM2/include/Tracking.h jni/ORB_SLAM2/include/Viewer.h \
- jni/ORB_SLAM2/include/FrameDrawer.h jni/ORB_SLAM2/include/MapDrawer.h \
- jni/ORB_SLAM2/include/System.h \
+ jni/ORB_SLAM2/include/FrameDrawer.h jni/ORB_SLAM2/include/System.h \
  D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/thread \
- jni/ORB_SLAM2/include/Initializer.h \
+ jni/ORB_SLAM2/include/MapDrawer.h jni/ORB_SLAM2/include/Initializer.h \
  jni/Thirdparty/g2o/g2o/types/types_seven_dof_expmap.h \
  jni/Thirdparty/g2o/g2o/types/../core/base_vertex.h \
  jni/Thirdparty/g2o/g2o/types/../core/optimizable_graph.h \
@@ -554,11 +553,11 @@ jni/ORB_SLAM2/include/Viewer.h:
 
 jni/ORB_SLAM2/include/FrameDrawer.h:
 
-jni/ORB_SLAM2/include/MapDrawer.h:
-
 jni/ORB_SLAM2/include/System.h:
 
 D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/thread:
+
+jni/ORB_SLAM2/include/MapDrawer.h:
 
 jni/ORB_SLAM2/include/Initializer.h:
 

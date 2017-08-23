@@ -80,8 +80,8 @@ obj/local/armeabi-v7a/objs/mono/./mono_camera.o: jni/./mono_camera.cpp \
  jni/include/opencv2/contrib/openfabmap.hpp \
  jni/ORB_SLAM2/include/KeyFrameDatabase.h \
  D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/mutex \
- jni/ORB_SLAM2/include/Map.h jni/ORB_SLAM2/include/MapDrawer.h \
- jni/ORB_SLAM2/include/System.h jni/ORB_SLAM2/include/LocalMapping.h \
+ jni/ORB_SLAM2/include/Map.h jni/ORB_SLAM2/include/System.h \
+ jni/ORB_SLAM2/include/MapDrawer.h jni/ORB_SLAM2/include/LocalMapping.h \
  jni/ORB_SLAM2/include/LoopClosing.h \
  jni/Thirdparty/g2o/g2o/types/types_seven_dof_expmap.h \
  jni/Thirdparty/g2o/g2o/types/../core/base_vertex.h \
@@ -449,9 +449,9 @@ D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/inclu
 
 jni/ORB_SLAM2/include/Map.h:
 
-jni/ORB_SLAM2/include/MapDrawer.h:
-
 jni/ORB_SLAM2/include/System.h:
+
+jni/ORB_SLAM2/include/MapDrawer.h:
 
 jni/ORB_SLAM2/include/LocalMapping.h:
 

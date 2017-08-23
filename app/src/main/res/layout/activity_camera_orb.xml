@@ -17,9 +17,11 @@
 
             <ImageView
                 android:id="@+id/img_dealed"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY" />
+                android:layout_width="214dip"
+                android:layout_height="160dip"
+                android:layout_marginLeft="0dip"
+                android:layout_marginTop="160dip"
+                />
 
 
             <org.opencv.android.JavaCameraView
@@ -28,8 +30,8 @@
                 android:layout_height="160dip"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="5dip"
-                android:layout_marginTop="5dip"
+                android:layout_marginLeft="0dip"
+                android:layout_marginTop="0dip"
                 android:background="@drawable/border"
                 android:visibility="gone"
                 opencv:camera_id="any"

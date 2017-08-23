@@ -1141,8 +1141,7 @@ void ORBextractor::ComputeKeyPointsOld(std::vector<std::vector<KeyPoint> > &allK
         computeOrientation(mvImagePyramid[level], allKeypoints[level], umax);
 }
 
-static void computeDescriptors(const Mat& image, vector<KeyPoint>& keypoints, Mat& descriptors,
-                               const vector<Point>& pattern)
+static void computeDescriptors(const Mat& image, vector<KeyPoint>& keypoints, Mat& descriptors, const vector<Point>& pattern)
 {
     descriptors = Mat::zeros((int)keypoints.size(), 32, CV_8UC1);
 
@@ -1189,12 +1188,10 @@ void ORBextractor::operator()( InputArray _image, InputArray _mask, vector<KeyPo
 
     Mat image = _image.getMat();
     assert(image.type() == CV_8UC1 );
-    LOG("start111:%d", nlevels);
     // Pre-compute the scale pyramid
     ComputePyramid(image);
 
     vector < vector<KeyPoint> > allKeypoints;
-    LOG("start222:%d", nlevels);
     ComputeKeyPointsOctTree(allKeypoints);
     //ComputeKeyPointsOld(allKeypoints);
 
@@ -1203,7 +1200,6 @@ void ORBextractor::operator()( InputArray _image, InputArray _mask, vector<KeyPo
     int nkeypoints = 0;
     for (int level = 0; level < nlevels; ++level)
         nkeypoints += (int)allKeypoints[level].size();
-    LOG("start333:%d", nlevels);
     if( nkeypoints == 0 )
         _descriptors.release();
     else
@@ -1222,17 +1218,17 @@ void ORBextractor::operator()( InputArray _image, InputArray _mask, vector<KeyPo
     vector<vector<KeyPoint> > keypointsEveryLevel;
     keypointsEveryLevel.resize(nlevels);
     // 图像金字塔每层的offset与前面每层的offset有关，所以不能直接放在ComputeDescriptorsEveryLevel计算
-    for (int level = 0; level < nlevels; ++level) {
-        computeDescThreads.push_back(thread(&ORBextractor::ComputeDescriptorsEveryLevel, this, level, std::ref(allKeypoints), descriptors, offset, std::ref(keypointsEveryLevel[level])));
-        int keypointsNum = (int)allKeypoints[level].size();
+    for (int i = 0; i < nlevels; ++i) {
+        computeDescThreads.push_back(thread(&ORBextractor::ComputeDescriptorsEveryLevel, this, i, std::ref(allKeypoints), descriptors, offset, std::ref(keypointsEveryLevel[i])));
+        int keypointsNum = (int)allKeypoints[i].size();
         offset += keypointsNum;
     }
-    for (int level = 0; level < nlevels; ++level) {
-        computeDescThreads[level].join();
+    for (int i = 0; i < nlevels; ++i) {
+        computeDescThreads[i].join();
     }
     // _keypoints要按照顺序进行插入，所以不能直接放在ComputeDescriptorsEveryLevel计算
-    for (int level = 0; level < nlevels; ++level) {
-        _keypoints.insert(_keypoints.end(), keypointsEveryLevel[level].begin(), keypointsEveryLevel[level].end());
+    for (int i = 0; i < nlevels; ++i) {
+        _keypoints.insert(_keypoints.end(), keypointsEveryLevel[i].begin(), keypointsEveryLevel[i].end());
     }
     /*************************************修改**********************************/
 
@@ -1267,7 +1263,6 @@ void ORBextractor::operator()( InputArray _image, InputArray _mask, vector<KeyPo
         _keypoints.insert(_keypoints.end(), keypoints.begin(), keypoints.end());
     }*/
     /*************************************原版**********************************/
-    LOG("start444");
 }
 
 void ORBextractor::ComputePyramid(cv::Mat image)

@@ -44,7 +44,7 @@ import com.example.castoryan.orb.R;
 public class ORBSLAMForCameraActivity extends Activity implements
 		Renderer,CvCameraViewListener2   {
 	
-	private static final String TAG = "MainActivity";
+	private static final String TAG = "ORB_SLAM_TRACK";
 	ImageView imgDealed;
 	
 	LinearLayout linear;
@@ -163,10 +163,11 @@ public class ORBSLAMForCameraActivity extends Activity implements
             					// TODO Auto-generated method stub
             					int[] resultInt = OrbNdkHelper.startCurrentORBForCamera(timestamp, addr, w, h);
 								Log.i(TAG,"Thread 0" +w + ','+h);
-            					resultImg = Bitmap.createBitmap(w, h,Config.RGB_565);
-								Log.i(TAG,"Thread 1");
-            					resultImg.setPixels(resultInt, 0, w, 0, 0, w, h);
-								Log.i(TAG,"Thread 2");
+//            					resultImg = Bitmap.createBitmap(w, h,Config.RGB_565);
+								resultImg = Bitmap.createBitmap(resultInt, w, h, Bitmap.Config.ARGB_8888);
+//								Log.i(TAG,"Thread 1");
+//            					resultImg.setPixels(resultInt, 0, w, 0, 0, w, h);
+//								Log.i(TAG,"Thread 2");
             					runOnUiThread(new Runnable() {
             						@Override
             						public void run() {

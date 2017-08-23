@@ -127,8 +127,10 @@ JNIEXPORT jintArray JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_start
         (JNIEnv *env, jclass cls,jdouble timestamp, jlong addr,jint w,jint h) {
 const cv::Mat *im = (cv::Mat *) addr;
 cv::Mat ima = s->TrackMonocular(*im, timestamp);
-jintArray resultArray = env->NewIntArray(ima.rows * ima.cols);
-jint *resultPtr;
+
+int iSize = ima.rows * ima.cols;
+jintArray resultArray = env->NewIntArray(iSize);
+/*jint *resultPtr;
 resultPtr = env->GetIntArrayElements(resultArray, false);
 for (int i = 0; i < ima.rows; i++)
 for (int j = 0; j < ima.cols; j++) {
@@ -136,8 +138,16 @@ int R = ima.at < Vec3b > (i, j)[0];
 int G = ima.at < Vec3b > (i, j)[1];
 int B = ima.at < Vec3b > (i, j)[2];
 resultPtr[i * ima.cols + j] = 0xff000000 + (R << 16) + (G << 8) + B;
+}*/
+int* pDst = new int[iSize];
+for (int i = 0; i < iSize; i++)
+{
+unsigned char* pSrc = ima.ptr() + i * 3;
+pDst[i] = 0xff000000 | (pSrc[0] << 16) | (pSrc[1] << 8) | pSrc[2];
 }
-env->ReleaseIntArrayElements(resultArray, resultPtr, 0);
+env->SetIntArrayRegion(resultArray, 0, iSize, (jint*) pDst);
+delete [] pDst;
+//env->ReleaseIntArrayElements(resultArray, resultPtr, 0);
 return resultArray;
 }
 

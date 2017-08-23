@@ -95,6 +95,7 @@ public:
     // Current Frame
     Frame mCurrentFrame;
     cv::Mat mImGray;
+    cv::Mat mImOrigin;
 
     // Initialization Variables (Monocular)
     std::vector<int> mvIniLastMatches;
@@ -116,7 +117,6 @@ public:
     void Reset();
 
 protected:
-
     // Main tracking function. It is independent of the input sensor.
     void Track();
 
