@@ -170,7 +170,7 @@ void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
     imText.rowRange(im.rows,imText.rows) = cv::Mat::zeros(textSize.height+10,im.cols,im.type());
     cv::putText(imText,s.str(),cv::Point(5,imText.rows-25),cv::FONT_HERSHEY_PLAIN,1,cv::Scalar(255,0,0),1,8);
 
-LOG("channels:%d",imText.channels());
+    //LOG("channels:%d",imText.channels());
 }
 
 void FrameDrawer::Update(Tracking *pTracker)

@@ -2,6 +2,7 @@ package orb.slam2.android;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
+import android.opengl.GLU;
 
 import orb.slam2.android.nativefunc.OrbNdkHelper;
 
@@ -16,6 +17,7 @@ import org.opencv.core.Mat;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
 import android.os.Bundle;
@@ -34,6 +36,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.castoryan.orb.R;
+
+import static android.opengl.GLSurfaceView.RENDERMODE_WHEN_DIRTY;
 
 /**
  * ORB Test Activity For DataSetMode
@@ -119,21 +123,23 @@ public class ORBSLAMForCameraActivity extends Activity implements
         mOpenCvCameraView.setCvCameraViewListener(this);
 
 		mGLSurfaceView = new GLSurfaceView(this);
-		linear = (LinearLayout) findViewById(R.id.surfaceLinear);
-			//mGLSurfaceView.setEGLContextClientVersion(CONTEXT_CLIENT_VERSION);
+		mGLSurfaceView.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+		mGLSurfaceView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
+		mGLSurfaceView.setZOrderOnTop(true);
 		mGLSurfaceView.setRenderer(this);
+		linear = (LinearLayout) findViewById(R.id.surfaceLinear);
 		linear.addView(mGLSurfaceView, new LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.MATCH_PARENT,
 				LinearLayout.LayoutParams.MATCH_PARENT));
-		
+
 		vocPath = getIntent().getStringExtra("voc");
 		calibrationPath = getIntent().getStringExtra("calibration");
 		if (TextUtils.isEmpty(vocPath) || TextUtils.isEmpty(calibrationPath)) {
 			Toast.makeText(this, "null param,return!", Toast.LENGTH_LONG).show();
 			finish();
 		} else {
-			Toast.makeText(ORBSLAMForCameraActivity.this, "init has been started!",
-					Toast.LENGTH_LONG).show();
+//			Toast.makeText(ORBSLAMForCameraActivity.this, "init has been started!",
+//					Toast.LENGTH_LONG).show();
 			new Thread(new Runnable() {
 
 				@Override
@@ -146,14 +152,12 @@ public class ORBSLAMForCameraActivity extends Activity implements
 			}).start();
 		}
 	}
-	
+
 	Handler myHandler = new Handler() {
         public void handleMessage(Message msg) {
              switch (msg.what) {
                   case INIT_FINISHED:
-                	  Toast.makeText(ORBSLAMForCameraActivity.this,
-								"init has been finished!",
-								Toast.LENGTH_LONG).show();
+                	  //Toast.makeText(ORBSLAMForCameraActivity.this,"init has been finished!",Toast.LENGTH_LONG).show();
           			new Thread(new Runnable() {
 
         				@Override
@@ -162,19 +166,12 @@ public class ORBSLAMForCameraActivity extends Activity implements
         						timestamp = (double)System.currentTimeMillis()/1000.0;
             					// TODO Auto-generated method stub
             					int[] resultInt = OrbNdkHelper.startCurrentORBForCamera(timestamp, addr, w, h);
-								Log.i(TAG,"Thread 0" +w + ','+h);
-//            					resultImg = Bitmap.createBitmap(w, h,Config.RGB_565);
 								resultImg = Bitmap.createBitmap(resultInt, w, h, Bitmap.Config.ARGB_8888);
-//								Log.i(TAG,"Thread 1");
-//            					resultImg.setPixels(resultInt, 0, w, 0, 0, w, h);
-//								Log.i(TAG,"Thread 2");
             					runOnUiThread(new Runnable() {
             						@Override
             						public void run() {
             							// TODO Auto-generated method stub
-										Log.i(TAG,"Thread 3");
             							imgDealed.setImageBitmap(resultImg);
-										Log.i(TAG,"Thread 4");
             						}
             					});
         					}
@@ -205,7 +202,8 @@ public class ORBSLAMForCameraActivity extends Activity implements
 	@Override
 	public void onDrawFrame(GL10 gl) {
 		// TODO Auto-generated method stub
-		OrbNdkHelper.glesRender();
+		GLU.gluLookAt(gl, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 1f, 0f);
+		OrbNdkHelper.glesRender(addr);
 	}
 
 	@Override

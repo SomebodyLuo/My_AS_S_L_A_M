@@ -21,13 +21,15 @@
 #include "MapDrawer.h"
 #include "MapPoint.h"
 #include "KeyFrame.h"
+//#include<GLES/gl.h>
+//#include <GLES/glext.h>
 #include<GLES/gl.h>
 #include <GLES/glext.h>
 #include <mutex>
 #include <android/log.h>
-#define LOG_TAG "ORB_SLAM_SYSTEM"
+#define LOG_TAG "ORB_SLAM_TRACK"
 
-#define LOG(...) __android_log_print(ANDROID_LOG_INFO,LOG_TAG, __VA_ARGS__)
+#define LOG(...) __android_log_print(ANDROID_LOG_ERROR,LOG_TAG, __VA_ARGS__)
 
 namespace ORB_SLAM2 {
 
@@ -44,8 +46,8 @@ MapDrawer::MapDrawer(Map* pMap, const string &strSettingPath) :
 
 }
 
-void MapDrawer::DrawMapPoints() {
-	const vector<MapPoint*> &vpMPs = mpMap->GetAllMapPoints();
+void MapDrawer::DrawMapPoints(const cv::Mat &im) {
+	/*const vector<MapPoint*> &vpMPs = mpMap->GetAllMapPoints();
 	const vector<MapPoint*> &vpRefMPs = mpMap->GetReferenceMapPoints();
 
 	set<MapPoint*> spRefMPs(vpRefMPs.begin(), vpRefMPs.end());
@@ -55,54 +57,115 @@ void MapDrawer::DrawMapPoints() {
 
 	// 清除屏幕及深度缓存
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glViewport(0, 0, 640, 480);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+   // glOrthof(-0.5,0.5,-0.5,0.5,-5,5);
 	// 重置当前的模型观察矩阵
 	glMatrixMode (GL_MODELVIEW);
 	glLoadIdentity();
-	glScalef(2.0f,2.0f,2.0f);
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-	glLineWidth(3.0f);
-	glEnable (GL_COLOR_MATERIAL);
+	glScalef(2.0f,2.0f,0.5f);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);//黑色,并且最后1位是透明的才能透明
+	//glLineWidth(3.0f);
+	//glEnable (GL_COLOR_MATERIAL);
 	glEnableClientState (GL_VERTEX_ARRAY);
-
-	glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
+    glPointSize(9.0);
+    glPushMatrix();
+    glMultMatrixf(im.ptr<GLfloat>(0));
+    glPushMatrix();
+    glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
 	for (int i = 0, iend = vpMPs.size(); i < iend; i++) {
 		if (vpMPs[i]->isBad() || spRefMPs.count(vpMPs[i]))
 			continue;
 		cv::Mat pos = vpMPs[i]->GetWorldPos();
-
-		GLfloat vertexArray[3] = { pos.at<float>(0), pos.at<float>(1), pos.at<
-				float>(2) };
+		GLfloat vertexArray[3] = { pos.at<float>(0), -pos.at<float>(1), pos.at<float>(2) };
 		glVertexPointer(3, GL_FLOAT, 0, vertexArray);
 		glDrawArrays(GL_POINTS, 0, 1);
 	}
-	glFlush();
+    glPopMatrix();
+
+    glPushMatrix();
 	glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
-	for (set<MapPoint*>::iterator sit = spRefMPs.begin(), send = spRefMPs.end();
-			sit != send; sit++) {
+	for (set<MapPoint*>::iterator sit = spRefMPs.begin(), send = spRefMPs.end();sit != send; sit++) {
 		if ((*sit)->isBad())
 			continue;
 		cv::Mat pos = (*sit)->GetWorldPos();
-		GLfloat vertexArray[] = { pos.at<float>(0), pos.at<float>(1), pos.at<
-				float>(2) };
+        GLfloat vertexArray[] = { pos.at<float>(0), -pos.at<float>(1), pos.at<float>(2) };
 		glVertexPointer(3, GL_FLOAT, 0, vertexArray);
 		glDrawArrays(GL_POINTS, 0, 1);
 	}
-	glFlush();
+    glPopMatrix();
+    glPopMatrix();
+	glFlush();*/
+
+
+
+    const vector<MapPoint*> &vpMPs = mpMap->GetAllMapPoints();
+    const vector<MapPoint*> &vpRefMPs = mpMap->GetReferenceMapPoints();
+
+    set<MapPoint*> spRefMPs(vpRefMPs.begin(), vpRefMPs.end());
+
+    if (vpMPs.empty())
+        return;
+
+    // 清除屏幕及深度缓存
+    // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    // // 重置当前的模型观察矩阵
+    // // glMatrixMode (GL_MODELVIEW);
+    // // glLoadIdentity();
+    // glScalef(2.0f,2.0f,2.0f);
+    // glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+    // glLineWidth(mKeyFrameLineWidth);
+    glPointSize(mPointSize);
+    glEnable (GL_COLOR_MATERIAL);
+    glEnableClientState (GL_VERTEX_ARRAY);
+    glPointSize(9.0);
+    glPushMatrix();
+    glColor4f(0.0f, 0.0f, 0.0f, 1.0f);
+    for (int i = 0, iend = vpMPs.size(); i < iend; i++) {
+        if (vpMPs[i]->isBad() || spRefMPs.count(vpMPs[i]))
+            continue;
+        cv::Mat pos = vpMPs[i]->GetWorldPos();
+
+        GLfloat vertexArray[3] = { pos.at<float>(0), pos.at<float>(1), pos.at<
+                float>(2) };
+        glVertexPointer(3, GL_FLOAT, 0, vertexArray);
+        glDrawArrays(GL_POINTS, 0, 1);
+    }
+    glPopMatrix();
+    glPushMatrix();
+    glFlush();
+    glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
+    for (set<MapPoint*>::iterator sit = spRefMPs.begin(), send = spRefMPs.end();
+         sit != send; sit++) {
+        if ((*sit)->isBad())
+            continue;
+        cv::Mat pos = (*sit)->GetWorldPos();
+        GLfloat vertexArray[] = { pos.at<float>(0), pos.at<float>(1), pos.at<
+                float>(2) };
+        glVertexPointer(3, GL_FLOAT, 0, vertexArray);
+        glDrawArrays(GL_POINTS, 0, 1);
+    }
+    glPopMatrix();
+    glFlush();
 }
 
 void MapDrawer::DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph) {
-	const float &w = mKeyFrameSize;
-	const float h = w * 0.75;
-	const float z = w * 0.6;
+    const float &w = mKeyFrameSize;
+    const float h = w * 0.75;
+    const float z = w * 0.6;
 
 	const vector<KeyFrame*> vpKFs = mpMap->GetAllKeyFrames();
-
+	glEnable (GL_COLOR_MATERIAL);
+	glEnableClientState (GL_VERTEX_ARRAY);
 	if (bDrawKF) {
 		for (size_t i = 0; i < vpKFs.size(); i++) {
 			KeyFrame* pKF = vpKFs[i];
 			cv::Mat Twc = pKF->GetPoseInverse().t();
 			glPushMatrix();
 			glMultMatrixf(Twc.ptr < GLfloat > (0));
+			glLineWidth(mKeyFrameLineWidth);
 			glColor4f(0.0f, 0.0f, 1.0f, 1.0f);
 			GLfloat vertexArray[] = { 0, 0, 0, w, h, z, 0, 0, 0, w, -h, z, 0, 0,
 					0, -w, -h, z, 0, 0, 0, -w, h, z, w, h, z, w, -h, z, -w, h,
@@ -112,7 +175,7 @@ void MapDrawer::DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph) {
 			glPopMatrix();
 		}
 	}
-
+	glFlush();
 	if (bDrawGraph) {
 		glLineWidth(mGraphLineWidth);
 		glColor4f(0.0f, 1.0f, 0.0f, 0.6f);
@@ -135,46 +198,47 @@ void MapDrawer::DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph) {
 				}
 			}
 
-			// Spanning tree
-			KeyFrame* pParent = vpKFs[i]->GetParent();
-			if (pParent) {
-				cv::Mat Owp = pParent->GetCameraCenter();
-				GLfloat vertexArray[] = { Ow.at<float>(0), Ow.at<float>(1),
-						Ow.at<float>(2), Owp.at<float>(0), Owp.at<float>(1),
-						Owp.at<float>(2) };
-				glVertexPointer(3, GL_FLOAT, 0, vertexArray);
-				glDrawArrays(GL_LINES, 0, 2);
-			}
+            // Spanning tree
+            KeyFrame *pParent = vpKFs[i]->GetParent();
+            if (pParent) {
+                cv::Mat Owp = pParent->GetCameraCenter();
+                GLfloat vertexArray[] = {Ow.at<float>(0), Ow.at<float>(1),
+                                         Ow.at<float>(2), Owp.at<float>(0), Owp.at<float>(1),
+                                         Owp.at<float>(2)};
+                glVertexPointer(3, GL_FLOAT, 0, vertexArray);
+                glDrawArrays(GL_LINES, 0, 2);
+            }
 
-			// Loops
-			set<KeyFrame*> sLoopKFs = vpKFs[i]->GetLoopEdges();
-			for (set<KeyFrame*>::iterator sit = sLoopKFs.begin(), send =
-					sLoopKFs.end(); sit != send; sit++) {
-				if ((*sit)->mnId < vpKFs[i]->mnId)
-					continue;
-				cv::Mat Owl = (*sit)->GetCameraCenter();
-				GLfloat vertexArray[] = { Ow.at<float>(0), Ow.at<float>(1),
-						Ow.at<float>(2), Owl.at<float>(0), Owl.at<float>(1),
-						Owl.at<float>(2) };
-				glVertexPointer(3, GL_FLOAT, 0, vertexArray);
-				glDrawArrays(GL_LINES, 0, 2);
-			}
-		}
+            // Loops
+            set < KeyFrame * > sLoopKFs = vpKFs[i]->GetLoopEdges();
+            for (set<KeyFrame *>::iterator sit = sLoopKFs.begin(), send =
+                    sLoopKFs.end(); sit != send; sit++) {
+                if ((*sit)->mnId < vpKFs[i]->mnId)
+                    continue;
+                cv::Mat Owl = (*sit)->GetCameraCenter();
+                GLfloat vertexArray[] = {Ow.at<float>(0), Ow.at<float>(1),
+                                         Ow.at<float>(2), Owl.at<float>(0), Owl.at<float>(1),
+                                         Owl.at<float>(2)};
+                glVertexPointer(3, GL_FLOAT, 0, vertexArray);
+                glDrawArrays(GL_LINES, 0, 2);
+            }
+        }
 
-	}
-	glFlush();
-
+    }
+    glFlush();
 }
 
 void MapDrawer::DrawCurrentCamera(const cv::Mat &M) {
-	const float &w = mCameraSize;
+
+/***************************************原版************************************/
+	/*const float &w = mCameraSize;
 	const float h = w * 0.75;
 	const float z = w * 0.6;
 
 	glPushMatrix();
 	glMultMatrixf(M.ptr<GLfloat>(0));
 
-	glLineWidth(mCameraLineWidth);
+    glLineWidth(mCameraLineWidth);
 	glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
 	GLfloat vertexArray[] = { 0, 0, 0, w, h, z, 0, 0, 0, w, -h, z, 0, 0, 0, -w,
 			-h, z, 0, 0, 0, -w, h, z, w, h, z, w, -h, z, -w, h, z, -w, -h, z,
@@ -184,7 +248,101 @@ void MapDrawer::DrawCurrentCamera(const cv::Mat &M) {
 	glPopMatrix();
 
 	glDisableClientState (GL_VERTEX_ARRAY);
-	glDisable (GL_COLOR_MATERIAL);
+	glDisable (GL_COLOR_MATERIAL);*/
+/***************************************原版************************************/
+
+/***************************************修改************************************/
+    const float &w = mCameraSize;
+    const float h = w * 0.75;
+    const float z = w * 0.6;
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //设置OPENGL尺寸
+    glViewport(0, 0, 1280,960);
+    glScalef(2.0f,3.0f,2.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+    cv::Mat temp = cv::Mat::eye(4,4,CV_32F);
+    glEnable (GL_COLOR_MATERIAL);
+    glEnableClientState (GL_VERTEX_ARRAY);
+    if(!mCameraPose.empty()){
+        cv::Mat Rwc(3,3,CV_32F);
+        cv::Mat twc(3,1,CV_32F);
+        cv::Mat viewPos(3,1,CV_32F);
+        //lookAt
+        viewPos.at<float>(0)=0.0;
+        viewPos.at<float>(1)=0.0;
+        viewPos.at<float>(2)=0.3;
+        cv::Mat lookAtMat = cv::Mat::eye(4,4,CV_32F);
+        cv::Mat zVec(3,1,CV_32F);
+        cv::Mat sVec(3,1,CV_32F);
+        cv::Mat uVec(3,1,CV_32F);
+
+        {
+            unique_lock<mutex> lock(mMutexCamera);
+            Rwc = mCameraPose.rowRange(0,3).colRange(0,3).t();
+            twc = -Rwc*mCameraPose.rowRange(0,3).col(3);
+            //lookAt
+            zVec = -Rwc*viewPos;
+            normalize(zVec.col(0),zVec.col(0),1,cv::NORM_L2);
+            uVec.at<float>(0)=0.0;
+            uVec.at<float>(1)=1.0;
+            uVec.at<float>(2)=0.0;
+            sVec = zVec.cross(uVec);
+            normalize(sVec.col(0),sVec.col(0),1,cv::NORM_L2);
+            uVec = sVec.cross(zVec);
+            normalize(uVec.col(0),uVec.col(0),1,cv::NORM_L2);
+            // uVec = sVec.cross(zVec);
+
+            viewPos = Rwc*viewPos+twc;
+        }
+        temp = mCameraPose.clone();
+        temp.at<float>(0,3) = 0.0;
+        temp.at<float>(1,3) = 0.0;
+        temp.at<float>(2,3) = 0.0;
+        temp.at<float>(3,0) = twc.at<float>(0);
+        temp.at<float>(3,1) = twc.at<float>(1);
+        temp.at<float>(3,2) = twc.at<float>(2);
+        temp.at<float>(3,3) = 1.0;
+        lookAtMat.at<float>(0,0) = sVec.at<float>(0);
+        lookAtMat.at<float>(1,0) = sVec.at<float>(1);
+        lookAtMat.at<float>(2,0) = sVec.at<float>(2);
+        lookAtMat.at<float>(3,0) = 0.0;
+        lookAtMat.at<float>(0,1) = -uVec.at<float>(0);
+        lookAtMat.at<float>(1,1) = -uVec.at<float>(1);
+        lookAtMat.at<float>(2,1) = -uVec.at<float>(2);
+        lookAtMat.at<float>(3,1) = 0.0;
+        lookAtMat.at<float>(0,2) = -zVec.at<float>(0);
+        lookAtMat.at<float>(1,2) = -zVec.at<float>(1);
+        lookAtMat.at<float>(2,2) = -zVec.at<float>(2);
+        lookAtMat.at<float>(3,2) = 0.0;
+        lookAtMat.at<float>(0,3) = 0.0;
+        lookAtMat.at<float>(1,3) = 0.0;
+        lookAtMat.at<float>(2,3) = 0.0;
+        lookAtMat.at<float>(3,3) = 1.0;
+        glMultMatrixf(lookAtMat.ptr<GLfloat>(0));
+        glTranslatef(-viewPos.at<float>(0),-viewPos.at<float>(1),-viewPos.at<float>(2));
+        //gluLookAt(viewPos.at<float>(0),viewPos.at<float>(1),viewPos.at<float>(2),twc.at<float>(0),twc.at<float>(1),twc.at<float>(2),0.0,1.0,0.0);
+    }
+
+
+    glPushMatrix();
+    glMultMatrixf(temp.ptr<GLfloat>(0));
+
+    glLineWidth(mCameraLineWidth);
+    glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
+    GLfloat vertexArray[] = { 0, 0, 0, w, h, z, 0, 0, 0, w, -h, z, 0, 0, 0, -w,
+                              -h, z, 0, 0, 0, -w, h, z, w, h, z, w, -h, z, -w, h, z, -w, -h, z,
+                              -w, h, z, w, h, z, -w, -h, z, w, -h, z, };
+    glVertexPointer(3, GL_FLOAT, 0, vertexArray);
+    glDrawArrays(GL_LINES, 0, 16);
+    glPopMatrix();
+    glFlush();
+   // DrawKeyFrames(false,true);
+    DrawMapPoints(M);
+    // glDisableClientState (GL_VERTEX_ARRAY);
+    // glDisable (GL_COLOR_MATERIAL);
+    /***************************************修改************************************/
 }
 
 void MapDrawer::SetCurrentCameraPose(const cv::Mat &Tcw) {
@@ -193,32 +351,53 @@ void MapDrawer::SetCurrentCameraPose(const cv::Mat &Tcw) {
 }
 
 cv::Mat MapDrawer::GetCurrentOpenGLCameraMatrix() {
-	cv::Mat M(4, 4, CV_32F);
-	if (!mCameraPose.empty()) {
-		cv::Mat Rwc(3, 3, CV_32F);
-		cv::Mat twc(3, 1, CV_32F);
-		{
-			unique_lock < mutex > lock(mMutexCamera);
-			Rwc = mCameraPose.rowRange(0, 3).colRange(0, 3).t();
-			twc = -Rwc * mCameraPose.rowRange(0, 3).col(3);
-		}
-		M.at<float>(0, 0) = Rwc.at<float>(0, 0);
-		M.at<float>(1, 0) = Rwc.at<float>(1, 0);
-		M.at<float>(2, 0) = Rwc.at<float>(2, 0);
-		M.at<float>(3, 0) = 0;
-		M.at<float>(0, 1) = Rwc.at<float>(0, 1);
-		M.at<float>(1, 1) = Rwc.at<float>(1, 1);
-		M.at<float>(2, 1) = Rwc.at<float>(2, 1);
-		M.at<float>(3, 1) = 0;
-		M.at<float>(0, 2) = Rwc.at<float>(0, 2);
-		M.at<float>(1, 2) = Rwc.at<float>(1, 2);
-		M.at<float>(2, 2) = Rwc.at<float>(2, 2);
-		M.at<float>(3, 2) = 0;
-		M.at<float>(0, 3) = twc.at<float>(0);
-		M.at<float>(1, 3) = twc.at<float>(1);
-		M.at<float>(2, 3) = twc.at<float>(2);
-		M.at<float>(3, 3) = 1.0;
-	}
+    cv::Mat M = cv::Mat::eye(4,4,CV_32F);
+    /*cv::Mat M(4, 4, CV_32F);
+  /*if (!mCameraPose.empty()) {
+        cv::Mat Rwc(3, 3, CV_32F);
+        cv::Mat twc(3, 1, CV_32F);
+        {
+            unique_lock < mutex > lock(mMutexCamera);
+            Rwc = mCameraPose.rowRange(0, 3).colRange(0, 3).t();
+            twc = -Rwc * mCameraPose.rowRange(0, 3).col(3);
+        }
+//		M.at<float>(0, 0) = Rwc.at<float>(0, 0);
+//		M.at<float>(1, 0) = Rwc.at<float>(1, 0);
+//		M.at<float>(2, 0) = Rwc.at<float>(2, 0);
+//		M.at<float>(3, 0) = 0;
+//		M.at<float>(0, 1) = Rwc.at<float>(0, 1);
+//		M.at<float>(1, 1) = Rwc.at<float>(1, 1);
+//		M.at<float>(2, 1) = Rwc.at<float>(2, 1);
+//		M.at<float>(3, 1) = 0;
+//		M.at<float>(0, 2) = Rwc.at<float>(0, 2);
+//		M.at<float>(1, 2) = Rwc.at<float>(1, 2);
+//		M.at<float>(2, 2) = Rwc.at<float>(2, 2);
+//		M.at<float>(3, 2) = 0;
+//		M.at<float>(0, 3) = twc.at<float>(0);
+//		M.at<float>(1, 3) = twc.at<float>(1);
+//		M.at<float>(2, 3) = -twc.at<float>(2);
+//		M.at<float>(3, 3) = 1.0;
+
+        M.at<float>(0, 0) = Rwc.at<float>(0, 0);
+        M.at<float>(1, 0) = Rwc.at<float>(1, 0);
+        M.at<float>(2, 0) = Rwc.at<float>(2, 0);
+        M.at<float>(3, 0) = 0;
+        M.at<float>(0, 1) = Rwc.at<float>(0, 1);
+        M.at<float>(1, 1) = Rwc.at<float>(1, 1);
+        M.at<float>(2, 1) = Rwc.at<float>(2, 1);
+        M.at<float>(3, 1) = 0;
+        M.at<float>(0, 2) = Rwc.at<float>(0, 2);
+        M.at<float>(1, 2) = Rwc.at<float>(1, 2);
+        M.at<float>(2, 2) = Rwc.at<float>(2, 2);
+        M.at<float>(3, 2) = 0;
+        M.at<float>(0, 3) = twc.at<float>(0);
+        M.at<float>(1, 3) = twc.at<float>(1);
+        M.at<float>(2, 3) = -twc.at<float>(2);
+        M.at<float>(3, 3) = 1.0;
+
+        LOG("_X:%f, _Y:%f , _Z:%f",M.at<float>(0, 3),M.at<float>(1, 3),M.at<float>(2, 3));
+
+    }*/
 	return M;
 }
 

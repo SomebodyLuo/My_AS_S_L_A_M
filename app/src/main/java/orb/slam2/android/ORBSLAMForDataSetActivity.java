@@ -194,7 +194,7 @@ public class ORBSLAMForDataSetActivity extends Activity implements OnClickListen
 	@Override
 	public void onDrawFrame(GL10 gl) {
 		// TODO Auto-generated method stub
-		OrbNdkHelper.glesRender();
+		//OrbNdkHelper.glesRender(addr);
 	}
 
 	@Override

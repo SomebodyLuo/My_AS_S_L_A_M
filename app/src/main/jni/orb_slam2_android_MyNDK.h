@@ -40,7 +40,7 @@ JNIEXPORT void JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_glesInit
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_glesRender
-(JNIEnv *, jclass);
+(JNIEnv *, jclass,jlong);
 
 /*
  * Class:     orb_slam2_android_nativefunc_OrbNdkHelper

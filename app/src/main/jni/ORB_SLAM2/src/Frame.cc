@@ -196,9 +196,9 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extra
     mvInvLevelSigma2 = mpORBextractorLeft->GetInverseScaleSigmaSquares();
 
     // ORB extraction
-    LOG("mState00");
+    //LOG("mState00");
     ExtractORB(0,imGray);
-    LOG("mState00");
+    //LOG("mState00");
 
     N = mvKeys.size();
 
@@ -333,7 +333,7 @@ bool Frame::isInFrustum(MapPoint *pMP, float viewingCosLimit)
         return false;
 
     // Predict scale in the image
-    const int nPredictedLevel = pMP->PredictScale(dist,mfLogScaleFactor);
+    const int nPredictedLevel = pMP->PredictScale(dist,this);
 
     // Data used by the tracking
     pMP->mbTrackInView = true;
@@ -490,6 +490,10 @@ void Frame::ComputeStereoMatches()
     mvuRight = vector<float>(N,-1.0f);
     mvDepth = vector<float>(N,-1.0f);
 
+/**********************修改***********************/
+    const int thOrbDist = (ORBmatcher::TH_HIGH+ORBmatcher::TH_LOW)/2;
+/**********************修改***********************/
+
     const int nRows = mpORBextractorLeft->mvImagePyramid[0].rows;
 
     //Assign keypoints to row table
@@ -514,7 +518,13 @@ void Frame::ComputeStereoMatches()
 
     // Set limits for search
     const float minZ = mb;
-    const float minD = -3;
+	/*******************************原版**************************/
+    //const float minD = -3;
+	/*******************************原版**************************/
+	
+	/**********************修改***********************/
+	const float minD = 0;
+	/**********************修改***********************/
     const float maxD = mbf/minZ;
 
     // For each left keypoint search a match in the right image
@@ -569,7 +579,10 @@ void Frame::ComputeStereoMatches()
         }
 
         // Subpixel match by correlation
-        if(bestDist<ORBmatcher::TH_HIGH)
+		/*******************************原版**************************/
+        //if(bestDist<ORBmatcher::TH_HIGH)
+		/*******************************原版**************************/
+		if(bestDist<thOrbDist)
         {
             // coordinates in image pyramid at keypoint scale
             const float uR0 = mvKeysRight[bestIdxR].pt.x;
@@ -629,7 +642,7 @@ void Frame::ComputeStereoMatches()
 
             float disparity = (uL-bestuR);
 
-            if(disparity>=0 && disparity<maxD)
+            if(disparity>=minD && disparity<maxD)
             {
                 if(disparity<=0)
                 {

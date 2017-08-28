@@ -77,7 +77,7 @@ JNIEXPORT void JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_glesInit
 // 启用阴影平滑
 glShadeModel(GL_SMOOTH);
 // 黑色背景
-glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 // 设置深度缓存
 glClearDepthf(1.0f);
 // 启用深度测试
@@ -94,12 +94,15 @@ glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_glesRender
-(JNIEnv * env, jclass cls) {
+(JNIEnv * env, jclass cls,jlong addr) {
 glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 glMatrixMode (GL_MODELVIEW);
 glLoadIdentity ();
 if(init_end)
-s->drawGL();
+{
+const cv::Mat *im = (cv::Mat *) addr;
+s->drawGL(*im);
+}
 }
 
 /*
@@ -110,12 +113,14 @@ s->drawGL();
 JNIEXPORT void JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_glesResize
 (JNIEnv *env, jclass cls, jint width, jint height) {
 //图形最终显示到屏幕的区域的位置、长和宽
-glViewport (0,0,width,height);
-//指定矩阵
+glViewport (0,0,1280,960);
+////指定矩阵
 glMatrixMode (GL_PROJECTION);
-//将当前的矩阵设置为glMatrixMode指定的矩阵
+////将当前的矩阵设置为glMatrixMode指定的矩阵
 glLoadIdentity ();
-glOrthof(-2, 2, -2, 2, -2, 2);
+//glOrthof(-2, 2, -2, 2, -2, 2);
+glOrthof(-1, 1, -1, 1, -100, 100);
+
 }
 
 /*

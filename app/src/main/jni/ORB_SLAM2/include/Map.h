@@ -45,6 +45,8 @@ public:
     void EraseMapPoint(MapPoint* pMP);
     void EraseKeyFrame(KeyFrame* pKF);
     void SetReferenceMapPoints(const std::vector<MapPoint*> &vpMPs);
+    void InformNewBigChange();
+    int GetLastBigChangeIdx();
 
     std::vector<KeyFrame*> GetAllKeyFrames();
     std::vector<MapPoint*> GetAllMapPoints();
@@ -72,6 +74,8 @@ protected:
 
     long unsigned int mnMaxKFid;
 
+    // Index related to a big change in the map (loop closure, global BA)
+    int mnBigChangeIdx;
     std::mutex mMutexMap;
 };
 

@@ -8,16 +8,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dip"
+        android:layout_marginTop="58dp"
         android:text="@string/main_title"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:visibility="invisible"
+        android:id="@+id/textView" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true">
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="29dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,32 +32,39 @@
                 android:id="@+id/dataset_mode"
                 android:layout_width="150dip"
                 android:layout_height="wrap_content"
-                android:text="@string/dataset_mode" />
-
-            <Button
-                android:id="@+id/camera_mode"
-                android:layout_width="150dip"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="120dip"
-                android:text="@string/camera_mode" />
-
-            <Button
-                android:id="@+id/changeTxt2Bin"
-                android:layout_width="150dip"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="120dip"
-                android:text="changeTxt2Bin" />
+                android:text="@string/dataset_mode"
+                android:visibility="invisible" />
 
         </LinearLayout>
 
         <TextView
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dip"
             android:gravity="right"
             android:text="produced by Frank"
             android:textColor="#CCCCCC"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:visibility="invisible" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/changeTxt2Bin"
+        android:layout_width="150dip"
+        android:layout_height="63dp"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="120dip"
+        android:text="changeTxt2Bin" />
+
+    <Button
+        android:id="@+id/camera_mode"
+        android:layout_width="150dip"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dip"
+        android:text="@string/camera_mode"
+        android:layout_alignTop="@+id/textView"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

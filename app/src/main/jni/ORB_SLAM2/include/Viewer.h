@@ -56,7 +56,7 @@ public:
 
     void Release();
 
-    void drawGL();
+    void drawGL(const cv::Mat &im);
 
 private:
 

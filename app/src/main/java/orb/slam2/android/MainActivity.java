@@ -21,7 +21,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	private static final String TAG = "ORB_SLAM_TRACK";
 	Button datasetMode,cameraMode,changeMode;
 	public static OrbNdkHelper indtouchNDK = null;
-	private String VOCPath;
+	private String VOCPath,TUMPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,20 @@ public class MainActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.camera_mode:
 			//Toast.makeText(MainActivity.this, "on the way...", Toast.LENGTH_LONG).show();
-			startActivity(new Intent(MainActivity.this,CameraModeActivity.class));
+			//startActivity(new Intent(MainActivity.this,CameraModeActivity.class));
+			TUMPath = "/storage/emulated/0/Movies/KITTI03.yaml";
+			VOCPath = "/storage/emulated/0/Movies/ORBvoc.bin";
+			if(!TextUtils.isEmpty(TUMPath)&&!TextUtils.isEmpty(VOCPath)){
+				Bundle bundle=new Bundle();
+				bundle.putString("voc",VOCPath );
+				bundle.putString("calibration",TUMPath );
+				Intent intent =new Intent(this,ORBSLAMForCameraActivity.class);
+				intent.putExtras(bundle);
+				startActivity(intent);
+				finish();
+			}else{
+				Toast.makeText(this, "None of image path or Calibration path can be empty!", Toast.LENGTH_LONG).show();
+			}
 			break;
 		case R.id.changeTxt2Bin:
 		VOCPath = "/storage/emulated/0/Movies/ORBvoc.txt";

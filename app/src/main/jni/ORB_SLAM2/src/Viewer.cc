@@ -33,7 +33,7 @@ namespace ORB_SLAM2
 
 Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer, Tracking *pTracking, const string &strSettingPath):
     mpSystem(pSystem), mpFrameDrawer(pFrameDrawer),mpMapDrawer(pMapDrawer), mpTracker(pTracking),
-    mbFinishRequested(false), mbFinished(true), mbStopped(false), mbStopRequested(false)
+    mbFinishRequested(false), mbFinished(true), mbStopped(true), mbStopRequested(false)
 {
     cv::FileStorage fSettings(strSettingPath, cv::FileStorage::READ);
 
@@ -59,6 +59,7 @@ Viewer::Viewer(System* pSystem, FrameDrawer *pFrameDrawer, MapDrawer *pMapDrawer
 void Viewer::Run()
 {
     mbFinished = false;
+    mbStopped = false;
 
 //    pangolin::CreateWindowAndBind("ORB-SLAM2: Map Viewer",1024,768);
 //
@@ -172,10 +173,10 @@ void Viewer::Run()
 //    SetFinish();
 }
 
-void Viewer::drawGL(){
-	LOG("Viewer drawGL Thread has been started!");
-	mpMapDrawer->DrawKeyFrames(true,true);
-	mpMapDrawer->DrawMapPoints();
+void Viewer::drawGL(const cv::Mat &im){
+	//LOG("Viewer drawGL Thread has been started!");
+	//mpMapDrawer->DrawMapPoints(mpMapDrawer->GetCurrentOpenGLCameraMatrix());
+    //mpMapDrawer->DrawKeyFrames(true,true);
 	mpMapDrawer->DrawCurrentCamera(mpMapDrawer->GetCurrentOpenGLCameraMatrix());
 }
 

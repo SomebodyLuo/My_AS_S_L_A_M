@@ -38,7 +38,7 @@ public:
 
     Map* mpMap;
 
-    void DrawMapPoints();
+    void DrawMapPoints(const cv::Mat &im);
     void DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph);
     void DrawCurrentCamera(const cv::Mat &M);
     void SetCurrentCameraPose(const cv::Mat &Tcw);
@@ -46,7 +46,6 @@ public:
     cv::Mat GetCurrentOpenGLCameraMatrix();
 
 private:
-
     float mKeyFrameSize;
     float mKeyFrameLineWidth;
     float mGraphLineWidth;
