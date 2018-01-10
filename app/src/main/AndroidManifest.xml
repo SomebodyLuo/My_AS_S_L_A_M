@@ -5,10 +5,8 @@
     android:versionName="2.1">
 
     <uses-sdk
-        android:minSdkVersion="12"
+        android:minSdkVersion="18"
         android:targetSdkVersion="19" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 
     <supports-screens
         android:anyDensity="true"
@@ -16,25 +14,20 @@
         android:normalScreens="true"
         android:resizeable="true"
         android:smallScreens="true" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
-    <uses-feature android:glEsVersion="0x00030000" android:required="true" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="android.hardware.camera" android:required="true"/>
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="true"/>
+    <uses-feature android:name="android.hardware.camera.front" android:required="true"/>
+    <uses-feature android:name="android.hardware.camera.front.autofocus" android:required="true"/>
+
+    <uses-feature android:glEsVersion="0x00030000" android:required="true"/>
     <supports-gl-texture android:name="GL_OES_compressed_ETC1_RGB8_texture" />
     <supports-gl-texture android:name="GL_OES_compressed_paletted_texture" />
-
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.camera.autofocus"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.camera.front"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.camera.front.autofocus"
-        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -50,31 +43,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name="orb.slam2.android.DataSetModeActivity"
-            android:label="DataSetMode"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
-            android:name="orb.slam2.android.CameraModeActivity"
-            android:label="CameraMode"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
-            android:name="orb.slam2.android.FileChooserActivity"
-            android:label="ChooseDirectory"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
-            android:name="orb.slam2.android.ORBSLAMForDataSetActivity"
-            android:label="ORB_SLAM2"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
-            android:name="orb.slam2.android.ORBSLAMForCameraActivity"
-            android:label="ORB_SLAM2"
-            android:screenOrientation="landscape" >
         </activity>
     </application>
 

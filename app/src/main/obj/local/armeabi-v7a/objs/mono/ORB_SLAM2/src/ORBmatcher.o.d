@@ -1,31 +1,31 @@
-obj/local/armeabi-v7a/objs/mono/./ORB_SLAM2/src/ORBmatcher.o: \
- jni/./ORB_SLAM2/src/ORBmatcher.cc jni/ORB_SLAM2/include/ORBmatcher.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/vector \
+obj/local/armeabi-v7a/objs/mono/ORB_SLAM2/src/ORBmatcher.o: \
+ jni/ORB_SLAM2/src/ORBmatcher.cpp jni/ORB_SLAM2/include/ORBmatcher.h \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/vector \
  jni/include/opencv2/core/core.hpp jni/include/opencv2/core/types_c.h \
  jni/include/opencv2/core/version.hpp \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/complex \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/map \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/complex \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/map \
  jni/include/opencv2/core/operations.hpp jni/include/opencv2/core/mat.hpp \
  jni/include/opencv2/features2d/features2d.hpp \
  jni/include/opencv2/flann/miniflann.hpp \
  jni/include/opencv2/flann/defines.h jni/include/opencv2/flann/config.h \
  jni/ORB_SLAM2/include/MapPoint.h jni/ORB_SLAM2/include/KeyFrame.h \
  jni/Thirdparty/DBoW2/DBoW2/BowVector.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iostream \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iostream \
  jni/Thirdparty/DBoW2/DBoW2/FeatureVector.h \
  jni/Thirdparty/DBoW2/DBoW2/BowVector.h \
  jni/ORB_SLAM2/include/ORBVocabulary.h jni/Thirdparty/DBoW2/DBoW2/FORB.h \
  jni/Thirdparty/DBoW2/DBoW2/FClass.h \
  jni/Thirdparty/DBoW2/DBoW2/TemplatedVocabulary.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cassert \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/fstream \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cassert \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/fstream \
  jni/Thirdparty/DBoW2/DBoW2/FeatureVector.h \
  jni/Thirdparty/DBoW2/DBoW2/ScoringObject.h \
  jni/Thirdparty/DBoW2/DBoW2/../DUtils/Random.h \
  jni/ORB_SLAM2/include/ORBextractor.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/list \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/list \
  jni/include/opencv/cv.h jni/include/opencv2/core/core_c.h \
  jni/include/opencv2/imgproc/imgproc_c.h \
  jni/include/opencv2/imgproc/types_c.h \
@@ -36,12 +36,12 @@ obj/local/armeabi-v7a/objs/mono/./ORB_SLAM2/src/ORBmatcher.o: \
  jni/include/opencv2/flann/general.h jni/include/opencv2/flann/defines.h \
  jni/include/opencv2/flann/matrix.h jni/include/opencv2/flann/params.h \
  jni/include/opencv2/flann/any.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/typeinfo \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/typeinfo \
  jni/include/opencv2/flann/saving.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstring \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstring \
  jni/include/opencv2/flann/nn_index.h \
  jni/include/opencv2/flann/result_set.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/set \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/set \
  jni/include/opencv2/flann/all_indices.h \
  jni/include/opencv2/flann/kdtree_index.h \
  jni/include/opencv2/flann/dynamic_bitset.h \
@@ -55,8 +55,8 @@ obj/local/armeabi-v7a/objs/mono/./ORB_SLAM2/src/ORBmatcher.o: \
  jni/include/opencv2/flann/hierarchical_clustering_index.h \
  jni/include/opencv2/flann/lsh_index.h \
  jni/include/opencv2/flann/lsh_table.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iomanip \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/unordered_map \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iomanip \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/unordered_map \
  jni/include/opencv2/flann/autotuned_index.h \
  jni/include/opencv2/flann/ground_truth.h \
  jni/include/opencv2/flann/index_testing.h \
@@ -64,7 +64,7 @@ obj/local/armeabi-v7a/objs/mono/./ORB_SLAM2/src/ORBmatcher.o: \
  jni/include/opencv2/calib3d/calib3d.hpp \
  jni/include/opencv2/core/affine.hpp \
  jni/include/opencv2/objdetect/objdetect.hpp \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/deque \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/deque \
  jni/include/opencv2/legacy/compat.hpp \
  jni/include/opencv2/core/internal.hpp jni/ORB_SLAM2/include/Frame.h \
  jni/include/opencv2/opencv.hpp jni/include/opencv2/photo/photo.hpp \
@@ -74,15 +74,15 @@ obj/local/armeabi-v7a/objs/mono/./ORB_SLAM2/src/ORBmatcher.o: \
  jni/include/opencv2/highgui/highgui.hpp \
  jni/include/opencv2/contrib/contrib.hpp \
  jni/include/opencv2/contrib/retina.hpp \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/valarray \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/valarray \
  jni/include/opencv2/contrib/openfabmap.hpp \
  jni/ORB_SLAM2/include/KeyFrameDatabase.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/mutex \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/mutex \
  jni/ORB_SLAM2/include/Map.h
 
 jni/ORB_SLAM2/include/ORBmatcher.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/vector:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/vector:
 
 jni/include/opencv2/core/core.hpp:
 
@@ -90,13 +90,13 @@ jni/include/opencv2/core/types_c.h:
 
 jni/include/opencv2/core/version.hpp:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/complex:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/complex:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/map:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/map:
 
 jni/include/opencv2/core/operations.hpp:
 
@@ -116,7 +116,7 @@ jni/ORB_SLAM2/include/KeyFrame.h:
 
 jni/Thirdparty/DBoW2/DBoW2/BowVector.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iostream:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iostream:
 
 jni/Thirdparty/DBoW2/DBoW2/FeatureVector.h:
 
@@ -130,9 +130,9 @@ jni/Thirdparty/DBoW2/DBoW2/FClass.h:
 
 jni/Thirdparty/DBoW2/DBoW2/TemplatedVocabulary.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cassert:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cassert:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/fstream:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/fstream:
 
 jni/Thirdparty/DBoW2/DBoW2/FeatureVector.h:
 
@@ -142,7 +142,7 @@ jni/Thirdparty/DBoW2/DBoW2/../DUtils/Random.h:
 
 jni/ORB_SLAM2/include/ORBextractor.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/list:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/list:
 
 jni/include/opencv/cv.h:
 
@@ -170,17 +170,17 @@ jni/include/opencv2/flann/params.h:
 
 jni/include/opencv2/flann/any.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/typeinfo:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/typeinfo:
 
 jni/include/opencv2/flann/saving.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstring:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstring:
 
 jni/include/opencv2/flann/nn_index.h:
 
 jni/include/opencv2/flann/result_set.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/set:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/set:
 
 jni/include/opencv2/flann/all_indices.h:
 
@@ -212,9 +212,9 @@ jni/include/opencv2/flann/lsh_index.h:
 
 jni/include/opencv2/flann/lsh_table.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iomanip:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iomanip:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/unordered_map:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/unordered_map:
 
 jni/include/opencv2/flann/autotuned_index.h:
 
@@ -232,7 +232,7 @@ jni/include/opencv2/core/affine.hpp:
 
 jni/include/opencv2/objdetect/objdetect.hpp:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/deque:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/deque:
 
 jni/include/opencv2/legacy/compat.hpp:
 
@@ -260,12 +260,12 @@ jni/include/opencv2/contrib/contrib.hpp:
 
 jni/include/opencv2/contrib/retina.hpp:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/valarray:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/valarray:
 
 jni/include/opencv2/contrib/openfabmap.hpp:
 
 jni/ORB_SLAM2/include/KeyFrameDatabase.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/mutex:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/mutex:
 
 jni/ORB_SLAM2/include/Map.h:

@@ -25,6 +25,7 @@
 #include"MapPoint.h"
 #include"KeyFrame.h"
 //#include<pangolin/pangolin.h>
+#include <OPENGL/include/Tutorial.h>
 
 #include<mutex>
 
@@ -35,17 +36,17 @@ class MapDrawer
 {
 public:
     MapDrawer(Map* pMap, const string &strSettingPath);
-
+    ~MapDrawer();
     Map* mpMap;
+    vvision::Tutorial * mpTutorial;
 
-    void DrawMapPoints(const cv::Mat &im);
-    void DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph);
-    void DrawCurrentCamera(const cv::Mat &M);
+    void InitGL();
+    void DrawMapPoints();
+    void NewDraw(cv::Mat& OImg);
     void SetCurrentCameraPose(const cv::Mat &Tcw);
-    void SetReferenceKeyFrame(KeyFrame *pKF);
-    cv::Mat GetCurrentOpenGLCameraMatrix();
-
 private:
+    vector<cv::Mat> BackPoints;
+
     float mKeyFrameSize;
     float mKeyFrameLineWidth;
     float mGraphLineWidth;
@@ -54,6 +55,8 @@ private:
     float mCameraLineWidth;
 
     cv::Mat mCameraPose;
+
+    cv::Mat mStaticPose;
 
     std::mutex mMutexCamera;
 };

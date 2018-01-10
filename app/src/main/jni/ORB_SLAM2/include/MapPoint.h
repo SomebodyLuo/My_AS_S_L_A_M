@@ -26,6 +26,7 @@
 #include"Map.h"
 
 #include<opencv2/core/core.hpp>
+#include <opencv2/opencv.hpp>
 #include<mutex>
 
 namespace ORB_SLAM2
@@ -78,8 +79,7 @@ public:
 
     float GetMinDistanceInvariance();
     float GetMaxDistanceInvariance();
-    int PredictScale(const float &currentDist, KeyFrame*pKF);
-    int PredictScale(const float &currentDist, Frame* pF);
+    int PredictScale(const float &currentDist, const float &logScaleFactor);
 
 public:
     long unsigned int mnId;

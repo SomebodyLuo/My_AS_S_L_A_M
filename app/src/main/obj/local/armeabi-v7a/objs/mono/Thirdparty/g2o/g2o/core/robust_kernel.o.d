@@ -1,20 +1,20 @@
-obj/local/armeabi-v7a/objs/mono/./Thirdparty/g2o/g2o/core/robust_kernel.o: \
- jni/./Thirdparty/g2o/g2o/core/robust_kernel.cpp \
- jni/./Thirdparty/g2o/g2o/core/robust_kernel.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/memory \
+obj/local/armeabi-v7a/objs/mono/Thirdparty/g2o/g2o/core/robust_kernel.o: \
+ jni/Thirdparty/g2o/g2o/core/robust_kernel.cpp \
+ jni/Thirdparty/g2o/g2o/core/robust_kernel.h \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/memory \
  jni/include/Eigen/Core \
  jni/include/Eigen/src/Core/util/DisableStupidWarnings.h \
  jni/include/Eigen/src/Core/util/Macros.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/complex \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/complex \
  jni/include/Eigen/src/Core/util/MKL_support.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cerrno \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstdlib \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cassert \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstring \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/limits \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/climits \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cerrno \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstdlib \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cassert \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstring \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/limits \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/climits \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm \
  jni/include/Eigen/src/Core/util/Constants.h \
  jni/include/Eigen/src/Core/util/ForwardDeclarations.h \
  jni/include/Eigen/src/Core/util/Meta.h \
@@ -98,9 +98,9 @@ obj/local/armeabi-v7a/objs/mono/./Thirdparty/g2o/g2o/core/robust_kernel.o: \
  jni/include/Eigen/src/Core/GlobalFunctions.h \
  jni/include/Eigen/src/Core/util/ReenableStupidWarnings.h
 
-jni/./Thirdparty/g2o/g2o/core/robust_kernel.h:
+jni/Thirdparty/g2o/g2o/core/robust_kernel.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/memory:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/memory:
 
 jni/include/Eigen/Core:
 
@@ -108,25 +108,25 @@ jni/include/Eigen/src/Core/util/DisableStupidWarnings.h:
 
 jni/include/Eigen/src/Core/util/Macros.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/complex:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/complex:
 
 jni/include/Eigen/src/Core/util/MKL_support.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cerrno:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cerrno:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstdlib:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstdlib:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cassert:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cassert:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstring:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstring:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/limits:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/limits:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/climits:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/climits:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm:
 
 jni/include/Eigen/src/Core/util/Constants.h:
 

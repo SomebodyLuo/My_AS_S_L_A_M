@@ -1,37 +1,37 @@
-obj/local/armeabi-v7a/objs/mono/./Thirdparty/g2o/g2o/core/optimization_algorithm.o: \
- jni/./Thirdparty/g2o/g2o/core/optimization_algorithm.cpp \
- jni/./Thirdparty/g2o/g2o/core/optimization_algorithm.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/vector \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/utility \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iosfwd \
- jni/./Thirdparty/g2o/g2o/core/../stuff/property.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/string \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/map \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/sstream \
- jni/./Thirdparty/g2o/g2o/core/../stuff/string_tools.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstdlib \
- jni/./Thirdparty/g2o/g2o/core/../stuff/macros.h \
- jni/./Thirdparty/g2o/g2o/core/hyper_graph.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/set \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/bitset \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cassert \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/limits \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/unordered_map \
- jni/./Thirdparty/g2o/g2o/core/sparse_block_matrix.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/fstream \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iostream \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iomanip \
+obj/local/armeabi-v7a/objs/mono/Thirdparty/g2o/g2o/core/optimization_algorithm.o: \
+ jni/Thirdparty/g2o/g2o/core/optimization_algorithm.cpp \
+ jni/Thirdparty/g2o/g2o/core/optimization_algorithm.h \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/vector \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/utility \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iosfwd \
+ jni/Thirdparty/g2o/g2o/core/../stuff/property.h \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/string \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/map \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/sstream \
+ jni/Thirdparty/g2o/g2o/core/../stuff/string_tools.h \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstdlib \
+ jni/Thirdparty/g2o/g2o/core/../stuff/macros.h \
+ jni/Thirdparty/g2o/g2o/core/hyper_graph.h \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/set \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/bitset \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cassert \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/limits \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/unordered_map \
+ jni/Thirdparty/g2o/g2o/core/sparse_block_matrix.h \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/fstream \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iostream \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iomanip \
  jni/include/Eigen/Core \
  jni/include/Eigen/src/Core/util/DisableStupidWarnings.h \
  jni/include/Eigen/src/Core/util/Macros.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/complex \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/complex \
  jni/include/Eigen/src/Core/util/MKL_support.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cerrno \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/functional \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstring \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/climits \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cerrno \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/functional \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstring \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/climits \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm \
  jni/include/Eigen/src/Core/util/Constants.h \
  jni/include/Eigen/src/Core/util/ForwardDeclarations.h \
  jni/include/Eigen/src/Core/util/Meta.h \
@@ -114,8 +114,8 @@ obj/local/armeabi-v7a/objs/mono/./Thirdparty/g2o/g2o/core/optimization_algorithm
  jni/include/Eigen/src/Core/ArrayWrapper.h \
  jni/include/Eigen/src/Core/GlobalFunctions.h \
  jni/include/Eigen/src/Core/util/ReenableStupidWarnings.h \
- jni/./Thirdparty/g2o/g2o/core/sparse_block_matrix_ccs.h \
- jni/./Thirdparty/g2o/g2o/core/../../config.h \
+ jni/Thirdparty/g2o/g2o/core/sparse_block_matrix_ccs.h \
+ jni/Thirdparty/g2o/g2o/core/../../config.h \
  jni/include/g2o/core/eigen_types.h jni/include/Eigen/Geometry \
  jni/include/Eigen/Core jni/include/Eigen/SVD jni/include/Eigen/QR \
  jni/include/Eigen/Cholesky jni/include/Eigen/src/misc/Solve.h \
@@ -149,53 +149,53 @@ obj/local/armeabi-v7a/objs/mono/./Thirdparty/g2o/g2o/core/optimization_algorithm
  jni/include/Eigen/src/Geometry/ParametrizedLine.h \
  jni/include/Eigen/src/Geometry/AlignedBox.h \
  jni/include/Eigen/src/Geometry/Umeyama.h \
- jni/./Thirdparty/g2o/g2o/core/matrix_operations.h \
- jni/./Thirdparty/g2o/g2o/core/matrix_structure.h \
- jni/./Thirdparty/g2o/g2o/core/sparse_block_matrix.hpp
+ jni/Thirdparty/g2o/g2o/core/matrix_operations.h \
+ jni/Thirdparty/g2o/g2o/core/matrix_structure.h \
+ jni/Thirdparty/g2o/g2o/core/sparse_block_matrix.hpp
 
-jni/./Thirdparty/g2o/g2o/core/optimization_algorithm.h:
+jni/Thirdparty/g2o/g2o/core/optimization_algorithm.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/vector:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/vector:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/utility:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/utility:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iosfwd:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iosfwd:
 
-jni/./Thirdparty/g2o/g2o/core/../stuff/property.h:
+jni/Thirdparty/g2o/g2o/core/../stuff/property.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/string:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/string:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/map:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/map:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/sstream:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/sstream:
 
-jni/./Thirdparty/g2o/g2o/core/../stuff/string_tools.h:
+jni/Thirdparty/g2o/g2o/core/../stuff/string_tools.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstdlib:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstdlib:
 
-jni/./Thirdparty/g2o/g2o/core/../stuff/macros.h:
+jni/Thirdparty/g2o/g2o/core/../stuff/macros.h:
 
-jni/./Thirdparty/g2o/g2o/core/hyper_graph.h:
+jni/Thirdparty/g2o/g2o/core/hyper_graph.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/set:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/set:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/bitset:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/bitset:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cassert:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cassert:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/limits:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/limits:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/unordered_map:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/unordered_map:
 
-jni/./Thirdparty/g2o/g2o/core/sparse_block_matrix.h:
+jni/Thirdparty/g2o/g2o/core/sparse_block_matrix.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/fstream:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/fstream:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iostream:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iostream:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iomanip:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iomanip:
 
 jni/include/Eigen/Core:
 
@@ -203,19 +203,19 @@ jni/include/Eigen/src/Core/util/DisableStupidWarnings.h:
 
 jni/include/Eigen/src/Core/util/Macros.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/complex:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/complex:
 
 jni/include/Eigen/src/Core/util/MKL_support.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cerrno:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cerrno:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/functional:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/functional:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstring:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstring:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/climits:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/climits:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm:
 
 jni/include/Eigen/src/Core/util/Constants.h:
 
@@ -395,9 +395,9 @@ jni/include/Eigen/src/Core/GlobalFunctions.h:
 
 jni/include/Eigen/src/Core/util/ReenableStupidWarnings.h:
 
-jni/./Thirdparty/g2o/g2o/core/sparse_block_matrix_ccs.h:
+jni/Thirdparty/g2o/g2o/core/sparse_block_matrix_ccs.h:
 
-jni/./Thirdparty/g2o/g2o/core/../../config.h:
+jni/Thirdparty/g2o/g2o/core/../../config.h:
 
 jni/include/g2o/core/eigen_types.h:
 
@@ -481,8 +481,8 @@ jni/include/Eigen/src/Geometry/AlignedBox.h:
 
 jni/include/Eigen/src/Geometry/Umeyama.h:
 
-jni/./Thirdparty/g2o/g2o/core/matrix_operations.h:
+jni/Thirdparty/g2o/g2o/core/matrix_operations.h:
 
-jni/./Thirdparty/g2o/g2o/core/matrix_structure.h:
+jni/Thirdparty/g2o/g2o/core/matrix_structure.h:
 
-jni/./Thirdparty/g2o/g2o/core/sparse_block_matrix.hpp:
+jni/Thirdparty/g2o/g2o/core/sparse_block_matrix.hpp:

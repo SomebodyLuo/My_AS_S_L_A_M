@@ -56,8 +56,9 @@ public:
 
     void Release();
 
-    void drawGL(const cv::Mat &im);
+    void InitGL();
 
+    void drawGL(cv::Mat& OImg);
 private:
 
     bool Stop();

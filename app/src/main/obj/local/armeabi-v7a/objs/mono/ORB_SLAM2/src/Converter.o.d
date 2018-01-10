@@ -1,21 +1,21 @@
-obj/local/armeabi-v7a/objs/mono/./ORB_SLAM2/src/Converter.o: \
- jni/./ORB_SLAM2/src/Converter.cc jni/ORB_SLAM2/include/Converter.h \
+obj/local/armeabi-v7a/objs/mono/ORB_SLAM2/src/Converter.o: \
+ jni/ORB_SLAM2/src/Converter.cpp jni/ORB_SLAM2/include/Converter.h \
  jni/include/opencv2/core/core.hpp jni/include/opencv2/core/types_c.h \
  jni/include/opencv2/core/version.hpp \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/complex \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/map \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/complex \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/map \
  jni/include/opencv2/core/operations.hpp jni/include/opencv2/core/mat.hpp \
  jni/include/Eigen/Dense jni/include/Eigen/Core \
  jni/include/Eigen/src/Core/util/DisableStupidWarnings.h \
  jni/include/Eigen/src/Core/util/Macros.h \
  jni/include/Eigen/src/Core/util/MKL_support.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cerrno \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cassert \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/functional \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstring \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/climits \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cerrno \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cassert \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/functional \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstring \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/climits \
  jni/include/Eigen/src/Core/util/Constants.h \
  jni/include/Eigen/src/Core/util/ForwardDeclarations.h \
  jni/include/Eigen/src/Core/util/Meta.h \
@@ -149,16 +149,16 @@ obj/local/armeabi-v7a/objs/mono/./ORB_SLAM2/src/Converter.o: \
  jni/Thirdparty/g2o/g2o/types/types_six_dof_expmap.h \
  jni/Thirdparty/g2o/g2o/types/../core/base_vertex.h \
  jni/Thirdparty/g2o/g2o/types/../core/optimizable_graph.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/set \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iostream \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/list \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/set \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iostream \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/list \
  jni/Thirdparty/g2o/g2o/types/../core/openmp_mutex.h \
  jni/Thirdparty/g2o/g2o/types/../core/../../config.h \
  jni/include/g2o/core/eigen_types.h jni/include/Eigen/Core \
  jni/include/Eigen/Geometry \
  jni/Thirdparty/g2o/g2o/types/../core/hyper_graph.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/bitset \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/unordered_map \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/bitset \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/unordered_map \
  jni/Thirdparty/g2o/g2o/types/../core/parameter.h \
  jni/Thirdparty/g2o/g2o/types/../core/parameter_container.h \
  jni/Thirdparty/g2o/g2o/types/../core/jacobian_workspace.h \
@@ -167,12 +167,12 @@ obj/local/armeabi-v7a/objs/mono/./ORB_SLAM2/src/Converter.o: \
  jni/Thirdparty/g2o/g2o/types/../core/../stuff/macros.h \
  jni/Thirdparty/g2o/g2o/types/../core/creators.h \
  jni/include/Eigen/Cholesky \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/stack \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/stack \
  jni/Thirdparty/g2o/g2o/types/../core/base_vertex.hpp \
  jni/Thirdparty/g2o/g2o/types/../core/base_binary_edge.h \
  jni/Thirdparty/g2o/g2o/types/../core/base_edge.h \
  jni/Thirdparty/g2o/g2o/types/../core/robust_kernel.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/memory \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/memory \
  jni/Thirdparty/g2o/g2o/types/../core/base_binary_edge.hpp \
  jni/Thirdparty/g2o/g2o/types/../core/base_unary_edge.h \
  jni/Thirdparty/g2o/g2o/types/../core/base_unary_edge.hpp \
@@ -192,13 +192,13 @@ jni/include/opencv2/core/types_c.h:
 
 jni/include/opencv2/core/version.hpp:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/algorithm:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstddef:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/complex:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/complex:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/map:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/map:
 
 jni/include/opencv2/core/operations.hpp:
 
@@ -214,15 +214,15 @@ jni/include/Eigen/src/Core/util/Macros.h:
 
 jni/include/Eigen/src/Core/util/MKL_support.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cerrno:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cerrno:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cassert:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cassert:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/functional:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/functional:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstring:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstring:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/climits:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/climits:
 
 jni/include/Eigen/src/Core/util/Constants.h:
 
@@ -520,11 +520,11 @@ jni/Thirdparty/g2o/g2o/types/../core/base_vertex.h:
 
 jni/Thirdparty/g2o/g2o/types/../core/optimizable_graph.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/set:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/set:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iostream:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iostream:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/list:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/list:
 
 jni/Thirdparty/g2o/g2o/types/../core/openmp_mutex.h:
 
@@ -538,9 +538,9 @@ jni/include/Eigen/Geometry:
 
 jni/Thirdparty/g2o/g2o/types/../core/hyper_graph.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/bitset:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/bitset:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/unordered_map:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/unordered_map:
 
 jni/Thirdparty/g2o/g2o/types/../core/parameter.h:
 
@@ -560,7 +560,7 @@ jni/Thirdparty/g2o/g2o/types/../core/creators.h:
 
 jni/include/Eigen/Cholesky:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/stack:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/stack:
 
 jni/Thirdparty/g2o/g2o/types/../core/base_vertex.hpp:
 
@@ -570,7 +570,7 @@ jni/Thirdparty/g2o/g2o/types/../core/base_edge.h:
 
 jni/Thirdparty/g2o/g2o/types/../core/robust_kernel.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/memory:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/tr1/memory:
 
 jni/Thirdparty/g2o/g2o/types/../core/base_binary_edge.hpp:
 

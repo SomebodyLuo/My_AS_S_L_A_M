@@ -115,13 +115,9 @@ public:
     bool mbOnlyTracking;
 
     void Reset();
-    
-    Map* mpMap;
-    cv::Mat mK;
-    cv::Mat mDistCoef;
-    float mbf;
 
 protected:
+
     // Main tracking function. It is independent of the input sensor.
     void Track();
 
@@ -184,12 +180,12 @@ protected:
     MapDrawer* mpMapDrawer;
 
     //Map
-    //Map* mpMap;
+    Map* mpMap;
 
     //Calibration matrix
-    //cv::Mat mK;
-    //cv::Mat mDistCoef;
-    //float mbf;
+    cv::Mat mK;
+    cv::Mat mDistCoef;
+    float mbf;
 
     //New KeyFrame rules (according to fps)
     int mMinFrames;

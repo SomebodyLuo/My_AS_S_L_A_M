@@ -1,43 +1,19 @@
 package orb.slam2.android;
 
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
-import android.opengl.GLU;
-
-import orb.slam2.android.nativefunc.OrbNdkHelper;
-
-import org.opencv.android.BaseLoaderCallback;
-import org.opencv.android.CameraBridgeViewBase;
-import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;
-import org.opencv.android.CameraBridgeViewBase.CvCameraViewListener2;
-import org.opencv.android.LoaderCallbackInterface;
-import org.opencv.android.OpenCVLoader;
-import org.opencv.core.Mat;
-
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
-import android.opengl.GLSurfaceView.Renderer;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.SurfaceView;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
+import java.nio.FloatBuffer;
 
-import com.example.castoryan.orb.R;
+import javax.microedition.khronos.egl.EGL10;
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.egl.EGLContext;
+import javax.microedition.khronos.egl.EGLDisplay;
+import javax.microedition.khronos.opengles.GL10;
 
-import static android.opengl.GLSurfaceView.RENDERMODE_WHEN_DIRTY;
+import orb.slam2.android.nativefunc.OrbNdkHelper;
 
 /**
  * ORB Test Activity For DataSetMode
@@ -45,248 +21,278 @@ import static android.opengl.GLSurfaceView.RENDERMODE_WHEN_DIRTY;
  * @author buptzhaofang@163.com Mar 24, 2016 4:13:32 PM
  *
  */
-public class ORBSLAMForCameraActivity extends Activity implements
-		Renderer,CvCameraViewListener2   {
-	
+public class ORBSLAMForCameraActivity extends GLSurfaceView{
+	public boolean InitFinish = false;
 	private static final String TAG = "ORB_SLAM_TRACK";
-	ImageView imgDealed;
-	
-	LinearLayout linear;
-	
-	String vocPath, calibrationPath;
+	public long imagedata;
+	private String voc = "/storage/emulated/0/Movies/ORBvoc.bin",tum = "/storage/emulated/0/Movies/KITTI03.yaml";
 
-	private static final int INIT_FINISHED=0x00010001;
-	
-	private CameraBridgeViewBase mOpenCvCameraView;
-	private boolean              mIsJavaCamera = true;
-	private MenuItem             mItemSwitchCamera = null;
-
-	private final int CONTEXT_CLIENT_VERSION = 3;
-	private GLSurfaceView mGLSurfaceView;
-	
-	long addr;
-	int w,h;
-	boolean isSLAMRunning=true;
-
-	private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
-        @Override
-        public void onManagerConnected(int status) {
-            switch (status) {
-                case LoaderCallbackInterface.SUCCESS:
-                {
-                    Log.i(TAG, "OpenCV loaded successfully");
-                    mOpenCvCameraView.enableView();
-                } break;
-                default:
-                {
-                    super.onManagerConnected(status);
-                } break;
-            }
-        }
-    };
-
-	static {
-		System.loadLibrary("mono");
+	public AssetManager assetManager;
+	public String pathToInternalDir;
+	public ORBSLAMForCameraActivity(Context context) {
+		super(context);
+		init(true, 0, 0);
 	}
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);// 隐藏标题
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);// 设置全屏
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+	private void init(boolean translucent, int depth, int stencil) {
 
-		setContentView(R.layout.activity_camera_orb);
+        /* By default, GLSurfaceView() creates a RGB_565 opaque surface.
+         * If we want a translucent one, we should change the surface's
+         * format here, using PixelFormat.TRANSLUCENT for GL Surfaces
+         * is interpreted as any 32-bit surface with alpha by SurfaceFlinger.
+         */
+		if (translucent) {
+			this.getHolder().setFormat(PixelFormat.TRANSLUCENT);
+		}
 
-		/*DisplayMetrics dm = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(dm);//display = getWindowManager().getDefaultDisplay();display.getMetrics(dm)（把屏幕尺寸信息赋值给DisplayMetrics dm）;
-		int width = dm.widthPixels;
-		int height = dm.heightPixels;
-		float xdpi = dm.xdpi;
-		float ydpi = dm.ydpi;
-		int density = dm.densityDpi;
-		float fdensity = dm.density;
+        /* Setup the context factory for 2.0 rendering.
+         * See ContextFactory class definition below
+         */
+		setEGLContextFactory(new ContextFactory());
 
-		Log.i(TAG, "onCreate: width="+width+"// height="+height +"// xdpi = "+xdpi
-				+"// ydp= "+ydpi + "// density = "+density +"// fdensity="+fdensity);*/
-		
-		imgDealed = (ImageView) findViewById(R.id.img_dealed);
+        /* We need to choose an EGLConfig that matches the format of
+         * our surface exactly. This is going to be done in our
+         * custom config chooser. See ConfigChooser class definition
+         * below.
+         */
 
-		if (mIsJavaCamera)
-			mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.tutorial1_activity_java_surface_view);
-        else
-            mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.tutorial1_activity_native_surface_view);
-        mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
-		mOpenCvCameraView.setMaxFrameSize(640,480);
-        mOpenCvCameraView.setCvCameraViewListener(this);
+		setEGLConfigChooser(new ConfigChooser(8, 8, 8, 8, 16, 0) );
 
-		mGLSurfaceView = new GLSurfaceView(this);
-		mGLSurfaceView.setEGLConfigChooser(8, 8, 8, 8, 16, 0);
-		mGLSurfaceView.getHolder().setFormat(PixelFormat.TRANSLUCENT);
-		mGLSurfaceView.setZOrderOnTop(true);
-		mGLSurfaceView.setRenderer(this);
-		linear = (LinearLayout) findViewById(R.id.surfaceLinear);
-		linear.addView(mGLSurfaceView, new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.MATCH_PARENT,
-				LinearLayout.LayoutParams.MATCH_PARENT));
+        /* Set the renderer responsible for frame rendering */
+		setRenderer(new Renderer());
+	}
 
-		vocPath = getIntent().getStringExtra("voc");
-		calibrationPath = getIntent().getStringExtra("calibration");
-		if (TextUtils.isEmpty(vocPath) || TextUtils.isEmpty(calibrationPath)) {
-			Toast.makeText(this, "null param,return!", Toast.LENGTH_LONG).show();
-			finish();
-		} else {
-//			Toast.makeText(ORBSLAMForCameraActivity.this, "init has been started!",
-//					Toast.LENGTH_LONG).show();
-			new Thread(new Runnable() {
+	/***********ContextFactory************/
+	private static class ContextFactory implements GLSurfaceView.EGLContextFactory {
+		private static int EGL_CONTEXT_CLIENT_VERSION = 0x3098;
+		public EGLContext createContext(EGL10 egl, EGLDisplay display, EGLConfig eglConfig) {
+			Log.w(TAG, "creating OpenGL ES 2.0 context");
+			checkEglError("Before eglCreateContext", egl);
+			int[] attrib_list = {EGL_CONTEXT_CLIENT_VERSION, 2, EGL10.EGL_NONE };
+			EGLContext context = egl.eglCreateContext(display, eglConfig, EGL10.EGL_NO_CONTEXT, attrib_list);
+			checkEglError("After eglCreateContext", egl);
+			return context;
+		}
 
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-					OrbNdkHelper.initSystemWithParameters(vocPath,calibrationPath);
-					Log.i(TAG,"init has been finished!");
-					myHandler.sendEmptyMessage(INIT_FINISHED);
-				}
-			}).start();
+		public void destroyContext(EGL10 egl, EGLDisplay display, EGLContext context) {
+			egl.eglDestroyContext(display, context);
+		}
+
+		private static void checkEglError(String prompt, EGL10 egl) {
+			int error;
+			while ((error = egl.eglGetError()) != EGL10.EGL_SUCCESS) {
+				Log.e(TAG, String.format("%s: EGL error: 0x%x", prompt, error));
+			}
 		}
 	}
 
-	Handler myHandler = new Handler() {
-        public void handleMessage(Message msg) {
-             switch (msg.what) {
-                  case INIT_FINISHED:
-                	  //Toast.makeText(ORBSLAMForCameraActivity.this,"init has been finished!",Toast.LENGTH_LONG).show();
-          			new Thread(new Runnable() {
+	/***********ConfigChooser************/
+	private static class ConfigChooser implements GLSurfaceView.EGLConfigChooser {
 
-        				@Override
-        				public void run() {
-        					while(isSLAMRunning){
-        						timestamp = (double)System.currentTimeMillis()/1000.0;
-            					// TODO Auto-generated method stub
-            					int[] resultInt = OrbNdkHelper.startCurrentORBForCamera(timestamp, addr, w, h);
-								resultImg = Bitmap.createBitmap(resultInt, w, h, Bitmap.Config.ARGB_8888);
-            					runOnUiThread(new Runnable() {
-            						@Override
-            						public void run() {
-            							// TODO Auto-generated method stub
-            							imgDealed.setImageBitmap(resultImg);
-            						}
-            					});
-        					}
-        				}
-        			}).start();
-                       break;
-             }
-             super.handleMessage(msg);
-        }
-   };
+		public ConfigChooser(int r, int g, int b, int a, int depth, int stencil) {
+			mRedSize = r;
+			mGreenSize = g;
+			mBlueSize = b;
+			mAlphaSize = a;
+			mDepthSize = depth;
+			mStencilSize = stencil;
+		}
 
-	private Bitmap tmp, resultImg;
-	private double timestamp;
+		/* This EGL config specification is used to specify 2.0 rendering.
+         * We use a minimum size of 4 bits for red/green/blue, but will
+         * perform actual matching in chooseConfig() below.
+         */
+		private static int EGL_OPENGL_ES2_BIT = 4;
+		private static int[] s_configAttribs2 =
+				{
+						EGL10.EGL_RED_SIZE, 4,
+						EGL10.EGL_GREEN_SIZE, 4,
+						EGL10.EGL_BLUE_SIZE, 4,
+						EGL10.EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
+						EGL10.EGL_NONE
+				};
 
-	@Override
-	public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-		// TODO Auto-generated method stub
-		//OrbNdkHelper.readShaderFile(mAssetMgr);
-		OrbNdkHelper.glesInit();
-	}
+		public EGLConfig chooseConfig(EGL10 egl, EGLDisplay display) {
 
-	@Override
-	public void onSurfaceChanged(GL10 gl, int width, int height) {
-		// TODO Auto-generated method stub
-		OrbNdkHelper.glesResize(width, height);
-	}
+            /* Get the number of minimally matching EGL configurations
+             */
+			int[] num_config = new int[1];
+			egl.eglChooseConfig(display, s_configAttribs2, null, 0, num_config);
 
-	@Override
-	public void onDrawFrame(GL10 gl) {
-		// TODO Auto-generated method stub
-		GLU.gluLookAt(gl, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 1f, 0f);
-		OrbNdkHelper.glesRender(addr);
-	}
+			int numConfigs = num_config[0];
 
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		super.onResume();
-		mGLSurfaceView.onResume();
-
-		OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_11, this, mLoaderCallback);
-	}
-
-
-
-	@Override
-	protected void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-	}
-
-	@Override
-	protected void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-		mGLSurfaceView.onPause();
-
-		if (mOpenCvCameraView != null)
-            mOpenCvCameraView.disableView();
-	}
-
-	public void onDestroy() {
-        super.onDestroy();
-        if (mOpenCvCameraView != null)
-            mOpenCvCameraView.disableView();
-    }
-	@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        Log.i(TAG, "called onCreateOptionsMenu");
-        mItemSwitchCamera = menu.add("stop SLAM");
-        return true;
-    }
-
-	 @Override
-	    public boolean onOptionsItemSelected(MenuItem item) {
-	        String toastMesage = new String();
-	        Log.i(TAG, "called onOptionsItemSelected; selected item: " + item);
-
-	        if (item == mItemSwitchCamera) {
-	        	isSLAMRunning=false;
-	            mOpenCvCameraView.setVisibility(SurfaceView.GONE);
-	            mIsJavaCamera = !mIsJavaCamera;
-
-	            if (mIsJavaCamera) {
-	                mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.tutorial1_activity_java_surface_view);
-	                toastMesage = "Java Camera";
-	            } else {
-	                mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.tutorial1_activity_native_surface_view);
-	                toastMesage = "Native Camera";
-	            }
-
-	            mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
-	            mOpenCvCameraView.setCvCameraViewListener(this);
-	            mOpenCvCameraView.enableView();
-	            Toast toast = Toast.makeText(this, toastMesage, Toast.LENGTH_LONG);
-	            toast.show();
-	        }
-
-	        return true;
-	    }
-
-	    public void onCameraViewStarted(int width, int height) {
-	    }
-
-	    public void onCameraViewStopped() {
-	    }
-
-	    public Mat onCameraFrame(CvCameraViewFrame inputFrame) {
-	    	Mat im=inputFrame.rgba();
-			//Log.i(TAG,"camera 0:" +im.cols() + ','+im.rows());
-	    	synchronized (im) {
-	    		addr=im.getNativeObjAddr();
+			if (numConfigs <= 0) {
+				throw new IllegalArgumentException("No configs match configSpec");
 			}
-	    	w=im.cols();
-	    	h=im.rows();
-	        return inputFrame.rgba();
-	    }
+
+            /* Allocate then read the array of minimally matching EGL configs
+             */
+			EGLConfig[] configs = new EGLConfig[numConfigs];
+			egl.eglChooseConfig(display, s_configAttribs2, configs, numConfigs, num_config);
+
+            /* Now return the "best" one
+             */
+			return chooseConfig(egl, display, configs);
+		}
+
+		public EGLConfig chooseConfig(EGL10 egl, EGLDisplay display,
+									  EGLConfig[] configs) {
+			for(EGLConfig config : configs) {
+				int d = findConfigAttrib(egl, display, config,
+						EGL10.EGL_DEPTH_SIZE, 0);
+				int s = findConfigAttrib(egl, display, config,
+						EGL10.EGL_STENCIL_SIZE, 0);
+
+				// We need at least mDepthSize and mStencilSize bits
+				if (d < mDepthSize || s < mStencilSize)
+					continue;
+
+				// We want an *exact* match for red/green/blue/alpha
+				int r = findConfigAttrib(egl, display, config,
+						EGL10.EGL_RED_SIZE, 0);
+				int g = findConfigAttrib(egl, display, config,
+						EGL10.EGL_GREEN_SIZE, 0);
+				int b = findConfigAttrib(egl, display, config,
+						EGL10.EGL_BLUE_SIZE, 0);
+				int a = findConfigAttrib(egl, display, config,
+						EGL10.EGL_ALPHA_SIZE, 0);
+
+				if (r == mRedSize && g == mGreenSize && b == mBlueSize && a == mAlphaSize)
+					return config;
+			}
+			return null;
+		}
+
+		private int findConfigAttrib(EGL10 egl, EGLDisplay display,
+									 EGLConfig config, int attribute, int defaultValue) {
+
+			if (egl.eglGetConfigAttrib(display, config, attribute, mValue)) {
+				return mValue[0];
+			}
+			return defaultValue;
+		}
+
+		private void printConfigs(EGL10 egl, EGLDisplay display,
+								  EGLConfig[] configs) {
+			int numConfigs = configs.length;
+			Log.w(TAG, String.format("%d configurations", numConfigs));
+			for (int i = 0; i < numConfigs; i++) {
+				Log.w(TAG, String.format("Configuration %d:\n", i));
+				printConfig(egl, display, configs[i]);
+			}
+		}
+
+		private void printConfig(EGL10 egl, EGLDisplay display,
+								 EGLConfig config) {
+			int[] attributes = {
+					EGL10.EGL_BUFFER_SIZE,
+					EGL10.EGL_ALPHA_SIZE,
+					EGL10.EGL_BLUE_SIZE,
+					EGL10.EGL_GREEN_SIZE,
+					EGL10.EGL_RED_SIZE,
+					EGL10.EGL_DEPTH_SIZE,
+					EGL10.EGL_STENCIL_SIZE,
+					EGL10.EGL_CONFIG_CAVEAT,
+					EGL10.EGL_CONFIG_ID,
+					EGL10.EGL_LEVEL,
+					EGL10.EGL_MAX_PBUFFER_HEIGHT,
+					EGL10.EGL_MAX_PBUFFER_PIXELS,
+					EGL10.EGL_MAX_PBUFFER_WIDTH,
+					EGL10.EGL_NATIVE_RENDERABLE,
+					EGL10.EGL_NATIVE_VISUAL_ID,
+					EGL10.EGL_NATIVE_VISUAL_TYPE,
+					0x3030, // EGL10.EGL_PRESERVED_RESOURCES,
+					EGL10.EGL_SAMPLES,
+					EGL10.EGL_SAMPLE_BUFFERS,
+					EGL10.EGL_SURFACE_TYPE,
+					EGL10.EGL_TRANSPARENT_TYPE,
+					EGL10.EGL_TRANSPARENT_RED_VALUE,
+					EGL10.EGL_TRANSPARENT_GREEN_VALUE,
+					EGL10.EGL_TRANSPARENT_BLUE_VALUE,
+					0x3039, // EGL10.EGL_BIND_TO_TEXTURE_RGB,
+					0x303A, // EGL10.EGL_BIND_TO_TEXTURE_RGBA,
+					0x303B, // EGL10.EGL_MIN_SWAP_INTERVAL,
+					0x303C, // EGL10.EGL_MAX_SWAP_INTERVAL,
+					EGL10.EGL_LUMINANCE_SIZE,
+					EGL10.EGL_ALPHA_MASK_SIZE,
+					EGL10.EGL_COLOR_BUFFER_TYPE,
+					EGL10.EGL_RENDERABLE_TYPE,
+					0x3042 // EGL10.EGL_CONFORMANT
+			};
+			String[] names = {
+					"EGL_BUFFER_SIZE",
+					"EGL_ALPHA_SIZE",
+					"EGL_BLUE_SIZE",
+					"EGL_GREEN_SIZE",
+					"EGL_RED_SIZE",
+					"EGL_DEPTH_SIZE",
+					"EGL_STENCIL_SIZE",
+					"EGL_CONFIG_CAVEAT",
+					"EGL_CONFIG_ID",
+					"EGL_LEVEL",
+					"EGL_MAX_PBUFFER_HEIGHT",
+					"EGL_MAX_PBUFFER_PIXELS",
+					"EGL_MAX_PBUFFER_WIDTH",
+					"EGL_NATIVE_RENDERABLE",
+					"EGL_NATIVE_VISUAL_ID",
+					"EGL_NATIVE_VISUAL_TYPE",
+					"EGL_PRESERVED_RESOURCES",
+					"EGL_SAMPLES",
+					"EGL_SAMPLE_BUFFERS",
+					"EGL_SURFACE_TYPE",
+					"EGL_TRANSPARENT_TYPE",
+					"EGL_TRANSPARENT_RED_VALUE",
+					"EGL_TRANSPARENT_GREEN_VALUE",
+					"EGL_TRANSPARENT_BLUE_VALUE",
+					"EGL_BIND_TO_TEXTURE_RGB",
+					"EGL_BIND_TO_TEXTURE_RGBA",
+					"EGL_MIN_SWAP_INTERVAL",
+					"EGL_MAX_SWAP_INTERVAL",
+					"EGL_LUMINANCE_SIZE",
+					"EGL_ALPHA_MASK_SIZE",
+					"EGL_COLOR_BUFFER_TYPE",
+					"EGL_RENDERABLE_TYPE",
+					"EGL_CONFORMANT"
+			};
+			int[] value = new int[1];
+			for (int i = 0; i < attributes.length; i++) {
+				int attribute = attributes[i];
+				String name = names[i];
+				if ( egl.eglGetConfigAttrib(display, config, attribute, value)) {
+					Log.w(TAG, String.format("222222%s: %d\n", name, value[0]));
+				} else {
+					// Log.w(TAG, String.format("  %s: failed\n", name));
+					while (egl.eglGetError() != EGL10.EGL_SUCCESS);
+				}
+			}
+		}
+
+		// Subclasses can adjust these values:
+		protected int mRedSize;
+		protected int mGreenSize;
+		protected int mBlueSize;
+		protected int mAlphaSize;
+		protected int mDepthSize;
+		protected int mStencilSize;
+		private int[] mValue = new int[1];
+	}
+
+	/***********Render************/
+	private  class Renderer implements GLSurfaceView.Renderer {
+		public void onDrawFrame(GL10 gl) {
+			OrbNdkHelper.glesRender(imagedata);
+		}
+
+		public void onSurfaceChanged(GL10 gl, int width, int height) {
+			Log.i(TAG,"onSurfaceChanged"+width +","+ height);
+			InitFinish = true;
+			OrbNdkHelper.glesInit();
+		}
+
+		public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+			// Do nothing.
+			Log.i(TAG,"onSurfaceCreated");
+			OrbNdkHelper.initSystemWithParameters(voc, tum, assetManager, pathToInternalDir);
+		}
+	}
 }

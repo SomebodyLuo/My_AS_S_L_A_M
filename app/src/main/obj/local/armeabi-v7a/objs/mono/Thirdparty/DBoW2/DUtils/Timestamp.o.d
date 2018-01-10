@@ -1,26 +1,26 @@
-obj/local/armeabi-v7a/objs/mono/./Thirdparty/DBoW2/DUtils/Timestamp.o: \
- jni/./Thirdparty/DBoW2/DUtils/Timestamp.cpp \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstdio \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstdlib \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/ctime \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cmath \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/sstream \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iomanip \
- jni/./Thirdparty/DBoW2/DUtils/Timestamp.h \
- D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iostream
+obj/local/armeabi-v7a/objs/mono/Thirdparty/DBoW2/DUtils/Timestamp.o: \
+ jni/Thirdparty/DBoW2/DUtils/Timestamp.cpp \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstdio \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstdlib \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/ctime \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cmath \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/sstream \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iomanip \
+ jni/Thirdparty/DBoW2/DUtils/Timestamp.h \
+ D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iostream
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstdio:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstdio:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstdlib:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cstdlib:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/ctime:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/ctime:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cmath:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/cmath:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/sstream:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/sstream:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iomanip:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iomanip:
 
-jni/./Thirdparty/DBoW2/DUtils/Timestamp.h:
+jni/Thirdparty/DBoW2/DUtils/Timestamp.h:
 
-D:/Soft_Setup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iostream:
+D:/SoftSetup/android-ndk-r12b/build//../sources/cxx-stl/gnu-libstdc++/4.9/include/iostream:

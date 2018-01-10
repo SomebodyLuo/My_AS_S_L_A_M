@@ -9,22 +9,16 @@ extern "C" {
 #endif
 
 JavaVM* jvm;
-
 /*
  * Class:     orb_slam2_android_nativefunc_OrbNdkHelper
  * Method:    initSystemWithParameters
  * Signature: (Ljava/lang/String;Ljava/lang/String;)V
  */
 JNIEXPORT void JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_initSystemWithParameters
-(JNIEnv *, jclass, jstring, jstring);
+(JNIEnv *, jclass, jstring, jstring, jobject, jstring);
 
-/*
- * Class:     orb_slam2_android_nativefunc_OrbNdkHelper
- * Method:    startCurrentORB
- * Signature: (D[III)[I
- */
-JNIEXPORT jintArray JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_startCurrentORB
-        (JNIEnv *, jclass, jdouble, jintArray, jint, jint);
+JNIEXPORT jintArray JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_Uninit
+        (JNIEnv *, jclass);
 
 /*
  * Class:     orb_slam2_android_nativefunc_OrbNdkHelper
@@ -40,7 +34,7 @@ JNIEXPORT void JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_glesInit
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_glesRender
-(JNIEnv *, jclass,jlong);
+(JNIEnv *, jclass, jlong);
 
 /*
  * Class:     orb_slam2_android_nativefunc_OrbNdkHelper
@@ -57,6 +51,7 @@ JNIEXPORT void JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_glesResize
  */
 JNIEXPORT jintArray JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_startCurrentORBForCamera
         (JNIEnv *, jclass,jdouble, jlong,jint,jint);
+
 /*
  * Class:     orb_slam2_android_nativefunc_OrbNdkHelper
  * Method:    readShaderFile

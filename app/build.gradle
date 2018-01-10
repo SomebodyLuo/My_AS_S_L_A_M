@@ -1,11 +1,13 @@
 apply plugin: 'com.android.application'
+
+
 android {
     compileSdkVersion 23
     buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.example.castoryan.orb"
-        minSdkVersion 18
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -13,12 +15,13 @@ android {
         ndk {
             moduleName "orb"
         }
+
         sourceSets.main {
             jni.srcDirs = []
             jniLibs.srcDir "src/main/libs"
         }
-
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -30,6 +33,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.android.support:support-v13:23.3.0'
     compile project(':openCVLibrary2411')
 }
 
