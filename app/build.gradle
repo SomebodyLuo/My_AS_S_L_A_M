@@ -2,24 +2,26 @@ apply plugin: 'com.android.application'
 
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 26
     buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.example.castoryan.orb"
         minSdkVersion 21
-        targetSdkVersion 23
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
         ndk {
-            moduleName "orb"
+            moduleName "mono"
+            abiFilter("armeabi-v7a")
         }
 
-        sourceSets.main {
-            jni.srcDirs = []
-            jniLibs.srcDir "src/main/libs"
-        }
+
+//        sourceSets.main {
+//            jni.srcDirs = []
+//            jniLibs.srcDir "src/main/libs"
+//        }
     }
 
     buildTypes {
@@ -33,9 +35,21 @@ android {
             path 'src/main/jni/Android.mk'
         }
     }
+
+    task nativeLibsToJar(type: Jar, description: 'create a jar archive of the native libs') {
+        destinationDir file("$buildDir/native-libs")
+        baseName 'native-libs'
+        from fileTree(dir: 'jniLibs', include: '**/*.so')
+        into 'jniLibs/'
+    }
+
+    tasks.withType(JavaCompile) {
+        compileTask -> compileTask.dependsOn(nativeLibsToJar)
+    }
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: "$buildDir/native-libs", include: 'native-libs.jar')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:support-v13:23.3.0'

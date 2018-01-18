@@ -201,19 +201,30 @@ public class MainActivity extends Activity implements CvCameraViewListener2,OnCl
 		mView.onResume();
 //		mSensorManager.registerListener(this,mRotation, SensorManager.SENSOR_DELAY_GAME);
 
-		OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_11, this, mLoaderCallback);
+//		OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_10, this, mLoaderCallback);
 
-		if (mCameraManager != null)
+		//添加一下代码即可    （mLoaderCallback为BaseLoaderCallback对象）
+		if(OpenCVLoader.initDebug())
 		{
-			// Start the background thread
-			mCameraManager.startBackgroundThread();
-			// Open the camera
-			// This should take care of the permissions requests
+			mLoaderCallback.onManagerConnected( LoaderCallbackInterface.SUCCESS);
 
-			mCameraManager.openCamera(640, 480);
+			if (mCameraManager != null)
+			{
+				// Start the background thread
+				mCameraManager.startBackgroundThread();
+				// Open the camera
+				// This should take care of the permissions requests
+
+				mCameraManager.openCamera(640, 480);
 
 
+			}
+
+		} else {
+			Log.i(TAG, "OpenCVLoader.initDebug() failed!");
 		}
+
+
 	}
 
 	@Override

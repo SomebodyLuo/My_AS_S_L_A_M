@@ -17,5 +17,5 @@ APP_CPPFLAGS += -std=gnu++11
 #APP_STL := c++_shared
 #APP_STL:= c++_static
 
-LOCAL_C_INCLUDES += /home/castoryan/Android/android-ndk-r10e/sources/cxx-stl/llvm-libc++/libcxx/include
+#LOCAL_C_INCLUDES += /home/castoryan/Android/android-ndk-r10e/sources/cxx-stl/llvm-libc++/libcxx/include
 LIBCXX_FORCE_REBUILD := true
