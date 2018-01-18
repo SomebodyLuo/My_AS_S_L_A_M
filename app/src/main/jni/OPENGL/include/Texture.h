@@ -57,7 +57,7 @@ namespace vvision
         void ActivateAndBind(GLenum texture_unit);
         
         /** activate and refresh texture*/
-        void ActivateAndRefresh(void * data, GLsizei width, GLsizei height, GLint xoffset = 0, GLint yoffset = 0,GLint level = 0, GLenum host_format = GL_RGBA, GLenum host_type = GL_UNSIGNED_BYTE);
+        void ActivateAndRefresh(void * data, GLsizei width, GLsizei height, GLint xoffset = 0, GLint yoffset = 0,GLint level = 0, GLenum host_format = GL_RGB, GLenum host_type = GL_UNSIGNED_BYTE);
         //void ActivateAndRefresh(void * data, GLsizei width, GLsizei height, GLint xoffset = 0, GLint yoffset = 0,GLint level = 0, GLenum host_format = GL_RGB, GLenum host_type = GL_UNSIGNED_BYTE);
 
         /** release texture*/

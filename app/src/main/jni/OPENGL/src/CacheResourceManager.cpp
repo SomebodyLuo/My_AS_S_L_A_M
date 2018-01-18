@@ -111,25 +111,25 @@ namespace vvision
 
         if(OImg.channels() == 3)
         {
-            cv::cvtColor(OImg, OImg, CV_BGR2RGBA);
+            cv::cvtColor(OImg, OImg, CV_BGR2RGB);
 
             cv::flip(OImg, OImg, 0);
 
             ptr->CreateTexture(GL_TEXTURE_2D,
-                               OImg.cols, OImg.rows, GL_RGBA,
-                               GL_UNSIGNED_BYTE, GL_RGBA, (uchar8*)OImg.data,
+                               OImg.cols, OImg.rows, GL_RGB,
+                               GL_UNSIGNED_BYTE, GL_RGB, (uchar8*)OImg.data,
                                wrap_s, wrap_t,
                                min_filter, mag_filter, buildMipMapTexture);
         }
         else
         {
-            cv::cvtColor(OImg, OImg, CV_BGRA2RGBA);
+            cv::cvtColor(OImg, OImg, CV_BGRA2RGB);
 
             cv::flip(OImg, OImg, 0);
 
             ptr->CreateTexture(GL_TEXTURE_2D,
-                               OImg.cols, OImg.rows, GL_RGBA,
-                               GL_UNSIGNED_BYTE, GL_RGBA, (uchar8*)OImg.data,
+                               OImg.cols, OImg.rows, GL_RGB,
+                               GL_UNSIGNED_BYTE, GL_RGB, (uchar8*)OImg.data,
                                wrap_s, wrap_t,
                                min_filter, mag_filter, buildMipMapTexture);
         }
