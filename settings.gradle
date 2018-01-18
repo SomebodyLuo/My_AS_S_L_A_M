@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':openCVLibrary2410'
 include ':openCVLibrary2411'
