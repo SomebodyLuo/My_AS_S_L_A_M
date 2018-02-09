@@ -43,7 +43,7 @@ namespace vvision {
 
     bool Tutorial::LoadEntities() {
         //static mesh
-        IMesh *assimpMesh = IMesh::LoadMeshFromFile("Resources/Leather_Arm_Chair/ToLong");
+        IMesh *assimpMesh = IMesh::LoadMeshFromFile("Resources/Leather_Arm_Chair/Leather_Arm_Chair");
         IMesh *assimpCamMesh = IMesh::LoadMeshFromFile("Resources/Camera/camera");
         IMesh *assimpShadowMesh = IMesh::LoadMeshFromFile("Resources/Shadow/fakeshadow");
         IMesh *assimpPointMesh = IMesh::LoadMeshFromPoint();
@@ -80,7 +80,8 @@ namespace vvision {
             return false;
         }
 
-        /************Mode***************/
+        // luoyouren
+        /************Model***************/
         if (!LoadEntities()) {
             Cleanup();
             return false;

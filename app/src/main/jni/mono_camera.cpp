@@ -19,6 +19,8 @@ using namespace cv;
 static ORB_SLAM2::System *s;
 bool init_end = false;
 MyJNIHelper * gHelperObject=NULL;
+
+
 void printGLString(const char *name, GLenum s) {
     const char *v = (const char *) glGetString(s);
     LOG("new GL %s = %s\n", name, v);
@@ -28,10 +30,10 @@ void printGLString(const char *name, GLenum s) {
 JNIEXPORT void JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_initOPENGL
 (JNIEnv *env, jclass cls, jint w, jint h)
 {
-printGLString("Version", GL_VERSION);
-printGLString("Vendor", GL_VENDOR);
-printGLString("Renderer", GL_RENDERER);
-printGLString("Extensions", GL_EXTENSIONS);
+    printGLString("Version", GL_VERSION);
+    printGLString("Vendor", GL_VENDOR);
+    printGLString("Renderer", GL_RENDERER);
+    printGLString("Extensions", GL_EXTENSIONS);
 }
 
 /*
@@ -41,21 +43,21 @@ printGLString("Extensions", GL_EXTENSIONS);
  */
 JNIEXPORT void JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_initSystemWithParameters
 (JNIEnv *env, jclass cls, jstring VOCPath, jstring calibrationPath,jobject assetManager,jstring pathToInternalDir) {
-const char *calChar = env->GetStringUTFChars(calibrationPath, JNI_FALSE);
-const char *vocChar = env->GetStringUTFChars(VOCPath, JNI_FALSE);
-// use your string
-std::string voc_string(vocChar);
-std::string cal_string(calChar);
+    const char *calChar = env->GetStringUTFChars(calibrationPath, JNI_FALSE);
+    const char *vocChar = env->GetStringUTFChars(VOCPath, JNI_FALSE);
+    // use your string
+    std::string voc_string(vocChar);
+    std::string cal_string(calChar);
 
-LOG("000%s , %s",vocChar,calChar);
-env->GetJavaVM(&jvm);
-jvm->AttachCurrentThread(&env, NULL);
-gHelperObject = new MyJNIHelper(env, assetManager, pathToInternalDir);
+    LOG("000%s , %s",vocChar,calChar);
+    env->GetJavaVM(&jvm);
+    jvm->AttachCurrentThread(&env, NULL);
+    gHelperObject = new MyJNIHelper(env, assetManager, pathToInternalDir);
 
-s=new ORB_SLAM2::System(voc_string,cal_string,ORB_SLAM2::System::MONOCULAR,true);
-env->ReleaseStringUTFChars(calibrationPath, calChar);
-env->ReleaseStringUTFChars(VOCPath, vocChar);
-init_end=true;
+    s=new ORB_SLAM2::System(voc_string, cal_string,ORB_SLAM2::System::MONOCULAR,true);
+    env->ReleaseStringUTFChars(calibrationPath, calChar);
+    env->ReleaseStringUTFChars(VOCPath, vocChar);
+    init_end = true;
 }
 
 JNIEXPORT jintArray JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_Uninit
@@ -73,7 +75,7 @@ JNIEXPORT jintArray JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_Unini
  */
 JNIEXPORT void JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_glesInit
 (JNIEnv *env, jclass cls) {
-s->InitGL();
+    s->InitGL();
 }
 
 /*
@@ -83,9 +85,9 @@ s->InitGL();
  */
 JNIEXPORT void JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_glesRender
 (JNIEnv * env, jclass cls, jlong addr) {
-cv::Mat *im = (cv::Mat *) addr;
-if(init_end)
-s->drawGL(*im);
+    cv::Mat *im = (cv::Mat *) addr;
+    if(init_end)
+    s->drawGL(*im);
 }
 
 /*
@@ -96,19 +98,19 @@ s->drawGL(*im);
 JNIEXPORT void JNICALL Java_orb_slam2_android_nativefunc_OrbNdkHelper_glesResize
 (JNIEnv *env, jclass cls, jint width, jint height) {
 
-//GLfloat fovy = 45.0f,  aspect = 640.0f/480.0f, zNear = 0.1f, zFar = 100.0f;
-//
-//GLfloat top = zNear * ((GLfloat) tan(fovy * 3.1415f / 360.0));
-//GLfloat bottom = -top;
-//GLfloat left = bottom * aspect;
-//GLfloat right = top * aspect;
-//glFrustumf(left, right, bottom, top, zNear, zFar);
-//
-//// 选择模型观察矩阵
-//glMatrixMode(GL_MODELVIEW);
-//
-//// 重置模型观察矩阵
-//glLoadIdentity();
+    //GLfloat fovy = 45.0f,  aspect = 640.0f/480.0f, zNear = 0.1f, zFar = 100.0f;
+    //
+    //GLfloat top = zNear * ((GLfloat) tan(fovy * 3.1415f / 360.0));
+    //GLfloat bottom = -top;
+    //GLfloat left = bottom * aspect;
+    //GLfloat right = top * aspect;
+    //glFrustumf(left, right, bottom, top, zNear, zFar);
+    //
+    //// 选择模型观察矩阵
+    //glMatrixMode(GL_MODELVIEW);
+    //
+    //// 重置模型观察矩阵
+    //glLoadIdentity();
 }
 
 /*

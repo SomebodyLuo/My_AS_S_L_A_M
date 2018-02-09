@@ -4,6 +4,8 @@
 
 #ifndef _Included_orb_slam2_android_MyNDK
 #define _Included_orb_slam2_android_MyNDK
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
